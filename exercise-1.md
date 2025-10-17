@@ -1,6 +1,6 @@
 # Exercise 1: Advanced Orchestration with Azure AI Foundry and Microsoft Agent Framework
 
-## Estimated Duration: 1 Hour
+## Estimated Duration: 60 Minutes
 
 ## Overview
 
