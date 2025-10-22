@@ -521,14 +521,95 @@ In this task you will attach the AzureSearchTool to HR/Finance/Compliance agents
 
    ![](/media/ss-43.png)
 
-### Task 3: Connect Agents to an External API (Freshdesk MCP Integration)
+### Task 3: Setting up Freshworks for Ticket Management
+
+In this task, you will set up and configure Freshworks to enable tickets management and a enterprise integration for your multi-agent system.
+
+**Freshworks** is a cloud-based customer service and engagement platform designed to improve customer support operations and enhance user satisfaction. It offers a suite of tools for ticket management, live chat, help center creation, and customer self-service. Freshworks supports omnichannel communication, enabling businesses to manage customer interactions across email, chat, phone, and social media from a centralized interface. Its automation features help streamline workflows, assign tickets, and provide analytics for performance tracking. Now you will set up the Freshworks account.
+
+1. Navigate to [Freshworks Portal](https://www.freshworks.com/freshdesk/lp/home/?tactic_id=3387224&utm_source=google-adwords&utm_medium=FD-Search-Brand-India&utm_campaign=FD-Search-Brand-India&utm_term=freshdesk&device=c&matchtype=e&network=g&gclid=EAIaIQobChMIuOK90qvLjQMV_dQWBR3JAi9VEAAYASAAEgK87_D_BwE&audience=kwd-30002131023&ad_id=282519464145&gad_source=1&gad_campaignid=671502402) using a new tab in your browser.
+
+   >Note: Since you are working within a VM, please copy the above link and open it in the browser inside the VM.
+
+1. In the portal, select **Start free trial** to start the free trial.
+
+   ![](./media/fw1.png)
+
+1. In the next pane, provide these details and click on **Try it free (5)**:
+
+   - **First name:** `ODL` **(1)**
+   - **Last name:** `User` **(2)**
+   - **Work email:** **<inject key="AzureAdUserEmail"></inject>** **(3)**
+   - **Company name:** `Contoso` **(4)**
+
+   ![](./media/fw2.png)
+
+1. In the next pane, provide these details and click on **Next (4)**:
+
+   - **What industry are you from ?:** from the list, select **Software and internet (1)**
+   - **How many employees are there in your company?:** select **1-10 (2)**
+   - select **I'm trying customer service software for the first time (3)**
+
+   ![](./media/fw3.png)
+
+1. Once done, navigate to [Outlook](https://go.microsoft.com/fwlink/p/?LinkID=2125442&clcid=0x409&culture=en-us&country=us).
+
+1. In the pick an account pane, select the account which you are assigned for this lab.
+
+   ![](./media/fw4.png)
+
+1. In the freshworks verification email, open and click on **Activate Account**.
+
+   ![](./media/fw5.png)
+
+   >**Note:** If you're unable to locate the activation email from Freshworks, please wait a few minutes, as there might be a delay in email delivery. If the email doesn't arrive after some time, consider reinitiating the steps to activate your free trial in a new private/incognito window. Additionally, check your spam or junk folder, as the email might have been filtered there.
+
+1. In the next pane, provide **<inject key="AzureAdUserPassword"></inject>** as **Enter password (1)** and provide the same password for **Confirm password (2)**. Click on **Activate your account (3)**.
+
+   ![](./media/fw6.png)
+
+1. Once you are in the portal, click on the **Profile (1)** icon from top right corner and select **Profile settings (2)**.
+
+   ![](./media/fw7.png)
+
+1. In the profile page, click on **View API Key** to get the API Keys.
+
+   ![](./media/fw8.png)
+
+   >**Note:** If you are not able to find this option, please minimize the screensize using **CTRL + -**.
+
+1. In the next pane, complete the **CAPTCHA**.
+
+   ![](./media/fw9.png)
+
+1. Please copy the API Key to a notepad, you will be using this further.
+
+   ![](./media/fw10.png)
+
+1. From the browser tab, please copy the **Account URL** as shown and copy the value to notepad. You will be using this further.
+
+   ![](./media/ss-67.png)
+
+1. From the left, click on **Tickets** icon from left menu, you can see some default tickets which are present.
+
+   ![](./media/fw11.png)
+
+1. Once done, navigate to Visual Studio Code pane and open `.env` file.
+
+1. In the `.env` file add the following content and add the key and domain URL that you copied earlier.
+
+   ```
+   # Freshdesk Configuration
+   FRESHDESK_DOMAIN=[Domain_URL]
+   FRESHDESK_API_KEY=[API_Key]
+   ```
+
+   ![](/media/ss-58.png)
+
+### Task 4: Connect Agents to an External API (Freshdesk MCP Integration)
 
 In this task, you’ll create an additional MCP tool that connects your agents to an external Freshdesk instance via its REST API.
 This tool will allow agents, especially Finance and HR to create real tickets when users request actions such as reimbursements, travel approvals, or policy clarification
-
-### Task 4: Execute Context-Aware and Actionable Workflows
-
-In this task, you’ll test the complete system end-to-end. The agents will retrieve relevant context from Azure AI Search, determine which department should handle the query, and, if needed, use the Freshdesk tool to create a ticket based on the user’s request. You’ll run scenarios such as “Submit travel reimbursement” or “Report compliance breach” to observe how the agents combine grounded reasoning with real API actions.
 
 ## Summary
 
