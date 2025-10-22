@@ -1,6 +1,6 @@
 # Exercise 3: Integrating Tools & Data with Model Context Protocol
 
-## Estimated Duration: 90 Minutes
+## Estimated Duration: 120 Minutes
 
 ## Overview
 
@@ -1282,6 +1282,7 @@ This tool will allow agents, especially Finance and HR to create real tickets wh
 ## Summary
 
 In this exercise, you successfully tested the complete multi-agent system where agents retrieved relevant information from Azure AI Search, identified the appropriate department to handle each query, and created Freshdesk tickets when necessary. This demonstrated how the agents can combine contextual reasoning with real-world actions, making them more efficient and practical for enterprise workflows.
+
 
 
 
