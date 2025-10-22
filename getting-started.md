@@ -72,7 +72,7 @@ Feel free to start, stop, or restart your virtual machine as needed from the Res
 
    ![](./media/gs-1.png)
 
-1. Open a new browser tab and navigate to [Power Apps](https://portal.azure.com/) portal.
+1. Open a new browser tab and navigate to [Azure Portal](https://portal.azure.com/) portal.
 
    >Note: Since you are working within a VM, please copy the above link and open it in the browser inside the VM.
 
@@ -104,3 +104,4 @@ The CloudLabs support team is available 24/7, 365 days a year, via email and liv
 Now, click on the **Next** from lower right corner to move on next page.
 
 ## Happy Learning!!
+
