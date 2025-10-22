@@ -14,6 +14,8 @@ You'll perform the following task in this exercise
 
 - Task 1: Build the Azure Search MCP Tool
 - Task 2: Attach Tool to Agents, Enrich Prompts, and Run Tests
+- Task 3: Setting up Freshworks for Ticket Management
+- Task 4: Connect Agents to an External API (Freshdesk MCP Integration)
 
 ### Task 1: Build the Azure Search MCP Tool
 

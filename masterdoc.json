@@ -1,0 +1,29 @@
+[
+    {
+        "Name": "Enterprise-Agentic-AI-with-Microsoft-Agent-Framework",
+        "Language": "English",
+        "BaseURL": "https://github.com/CloudLabsAI-Azure/Enterprise-Agentic-AI-with-Microsoft-Agent-Framework.git",
+        "Files": [
+            {
+                "RawFilePath": "",
+                "Order": 1
+            },
+            {
+                "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/Store-Operations-with-Copilot-Studio-lab/refs/heads/main/instructions/exercise1.md",
+                "Order": 2
+            },
+            {
+                "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/Store-Operations-with-Copilot-Studio-lab/refs/heads/main/instructions/exercise2.md",
+                "Order": 3
+            },
+            {
+                "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/Store-Operations-with-Copilot-Studio-lab/refs/heads/main/instructions/exercise3.md",
+                "Order": 4
+            },
+            {
+                "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/Store-Operations-with-Copilot-Studio-lab/refs/heads/main/instructions/exercise4.md",
+                "Order": 5
+            }
+        ]
+    }
+]
