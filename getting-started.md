@@ -72,7 +72,7 @@ Feel free to start, stop, or restart your virtual machine as needed from the Res
 
    ![](./media/gs-1.png)
 
-1. Open a new browser tab and navigate to [Power Apps](https://make.powerapps.com/) portal.
+1. Open a new browser tab and navigate to [Power Apps](https://portal.azure.com/) portal.
 
    >Note: Since you are working within a VM, please copy the above link and open it in the browser inside the VM.
 
@@ -94,10 +94,6 @@ Feel free to start, stop, or restart your virtual machine as needed from the Res
 
    ![](./media/gs-4.png)
 
-1. You have now successfully logged in to the Power Apps portal. Keep the portal open, as you will be using it later in the lab.
-
-   ![](./media/gs-5.png)
-
 ## Support Contact
 
 The CloudLabs support team is available 24/7, 365 days a year, via email and live chat to ensure seamless assistance at any time. We offer dedicated support channels tailored specifically for both learners and instructors, ensuring that all your needs are promptly and efficiently addressed.Learner Support Contacts:
@@ -107,6 +103,4 @@ The CloudLabs support team is available 24/7, 365 days a year, via email and liv
 
 Now, click on the **Next** from lower right corner to move on next page.
 
-
 ## Happy Learning!!
-
