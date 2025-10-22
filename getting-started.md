@@ -10,7 +10,19 @@ By the end of the lab, learners will have deployed their agents to the Azure AI 
 
 ## Objectives
 
+- Build a **RAG** knowledge base with **Azure AI Search** and connect it to agents via an **MCP tool**.
+- Author single- and multi-agent workflows with the **Microsoft Agent Framework SDK**.
+- Implement **A2A (Agent-to-Agent)** routing: Planner → HR/Finance/Compliance.
+- Integrate an external system (**Freshdesk**) to create real tickets from agent actions.
+- Deploy to **Azure AI Foundry Agent Service** and analyze **Thread Logs** & **Monitoring**.
+- Apply runtime policies (timeouts, rate limits, token budgets) for safe, cost-controlled ops.
+
 ## Pre-requisites
+
+- Basic understanding of Agentic AI concepts (agents, tools, A2A, RAG).
+- Working knowledge of the Azure Portal and Azure AI Foundry.
+- Familiarity with Python and Visual Studio Code (integrated terminal).
+- Basic Git usage (clone, open folder) and editing `.env` files.
 
 ## Architecture
 
@@ -24,13 +36,13 @@ Welcome to Enterprise-Agentic-AI-with-Microsoft-Agent-Framework Hands-On-Lab! , 
 
 Once you're ready to dive in, your virtual machine and Lab guide will be right at your fingertips within your web browser.
 
-![](./media/gs1.png)
+![](./media/gs-1.png)
 
 ### Exploring Your Lab Resources
 
 To get a better understanding of your Lab resources and credentials, navigate to the Environment tab.
 
-![](./media/gs2.png)
+![](./media/gs-2.png)
 
 ### Utilizing the Split Window Feature
 
