@@ -26,7 +26,16 @@ By the end of the lab, learners will have deployed their agents to the Azure AI 
 
 ## Architecture
 
+![](./media/agent-ai.png)
+
 ## Explaination of components
+
+- **Microsoft Agent Framework SDK** — Define the Planner + HR/Finance/Compliance agents, instructions, and A2A routing.
+- **Azure AI Foundry** — Create/configure agents, connect knowledge, test in Playground, and deploy via **Agent Service**; observe runs with **Thread Logs** and **Application Insights**.
+- **Azure AI Search (RAG)** — Index enterprise docs and return grounded snippets that agents use for accurate answers.
+- **Azure Storage (Blob)** — Holds source datasets that are ingested into Azure AI Search.
+- **MCP-style Tools** — `AzureSearchTool` (queries the index for context) and `FreshdeskTool` (creates support tickets via Freshdesk).
+- **Developer Stack (on VM)** — **Visual Studio Code** for editing/running Python (**3.11+**) agent code, with basic **Git** usage to manage the provided project.
 
 ## Getting Started with Lab
 
@@ -96,5 +105,6 @@ The CloudLabs support team is available 24/7, 365 days a year, via email and liv
 - Live Chat Support: https://cloudlabs.ai/labs-support
 
 Now, click on the **Next** from lower right corner to move on next page.
+
 
 ## Happy Learning!!
