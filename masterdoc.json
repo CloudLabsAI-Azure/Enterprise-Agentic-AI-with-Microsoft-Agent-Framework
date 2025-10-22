@@ -5,24 +5,20 @@
         "BaseURL": "https://github.com/CloudLabsAI-Azure/Enterprise-Agentic-AI-with-Microsoft-Agent-Framework.git",
         "Files": [
             {
-                "RawFilePath": "",
+                "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/Enterprise-Agentic-AI-with-Microsoft-Agent-Framework/refs/heads/main/getting-started.md",
                 "Order": 1
             },
             {
-                "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/Store-Operations-with-Copilot-Studio-lab/refs/heads/main/instructions/exercise1.md",
+                "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/Enterprise-Agentic-AI-with-Microsoft-Agent-Framework/refs/heads/main/exercise-1.md",
                 "Order": 2
             },
             {
-                "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/Store-Operations-with-Copilot-Studio-lab/refs/heads/main/instructions/exercise2.md",
+                "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/Enterprise-Agentic-AI-with-Microsoft-Agent-Framework/refs/heads/main/exercise-2.md",
                 "Order": 3
             },
             {
-                "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/Store-Operations-with-Copilot-Studio-lab/refs/heads/main/instructions/exercise3.md",
+                "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/Enterprise-Agentic-AI-with-Microsoft-Agent-Framework/refs/heads/main/exercise-3.md",
                 "Order": 4
-            },
-            {
-                "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/Store-Operations-with-Copilot-Studio-lab/refs/heads/main/instructions/exercise4.md",
-                "Order": 5
             }
         ]
     }
