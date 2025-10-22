@@ -36,6 +36,7 @@ By the end of the lab, learners will have deployed their agents to the Azure AI 
 - **Azure Storage (Blob)** — Holds source datasets that are ingested into Azure AI Search.
 - **MCP-style Tools** — `AzureSearchTool` (queries the index for context) and `FreshdeskTool` (creates support tickets via Freshdesk).
 - **Developer Stack (on VM)** — **Visual Studio Code** for editing/running Python (**3.11+**) agent code, with basic **Git** usage to manage the provided project.
+- **Microsoft Copilot Studio** — No/low-code environment to design, configure, and publish copilots. Great for wiring topics, guardrails, connectors, and quick channel publishing (e.g., Teams) without deep code changes.
 
 ## Getting Started with Lab
 
@@ -108,3 +109,4 @@ Now, click on the **Next** from lower right corner to move on next page.
 
 
 ## Happy Learning!!
+
