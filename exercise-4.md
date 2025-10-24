@@ -57,7 +57,7 @@ In this task, you’ll update the existing agent to be persistant agent and publ
 
 1. Now, you have to update the agents one by one. Select `compliance_agent.py` from explorer menu under **agents**. Replace the content by adding the below code snippet.
 
-    ```
+    ```python
     import os
     import asyncio
     from azure.ai.projects.aio import AIProjectClient
@@ -157,7 +157,7 @@ In this task, you’ll update the existing agent to be persistant agent and publ
 
 1. Select `finance_agent.py` file, and replace the content with below code snippet to configure persistant finance agent.
 
-    ```
+    ```python
     import os
     import asyncio
     from azure.ai.projects.aio import AIProjectClient
@@ -249,7 +249,7 @@ In this task, you’ll update the existing agent to be persistant agent and publ
 
 1. Now, select `hr_agent.py` file, replace the code with the following, which converts a stateless chat agent to a persistant agent.
 
-    ```
+    ```python
     import os
     import asyncio
     from azure.ai.projects.aio import AIProjectClient
@@ -337,7 +337,7 @@ In this task, you’ll update the existing agent to be persistant agent and publ
 
 1. Select `planner_agent.py` file, and replace the content with below code snippet to configure persistant orchestrator.
 
-    ```
+    ```python
     import os
     import asyncio
     from azure.ai.projects.aio import AIProjectClient
@@ -446,7 +446,7 @@ In this task, you’ll update the existing agent to be persistant agent and publ
 
 1. Now, select `main.py` from root and replace the code with the below given snippet. for all the code files please replace the code carefully as python is sensitive for indentations.
 
-    ```
+    ```python
     import asyncio
     import time
     import logging
