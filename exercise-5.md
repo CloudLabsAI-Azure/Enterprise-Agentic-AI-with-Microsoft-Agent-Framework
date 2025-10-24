@@ -268,8 +268,11 @@ In this task, you’ll use Azure Application Insights to visualize agent telemet
 
 1. Now, navigate to **monitoring** pane, where you have connected application insights before and select **Resource usage** tab and review all the metrics and values.
 
+   ![](./media/ss-114.png)
 
+1. Select, Tracing from the left menu, click on any of the trace and review the detailed traces of agent interactions.
 
+   ![](./media/ss-115.png)
 
 ## Summary
 
