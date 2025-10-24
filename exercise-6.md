@@ -1,6 +1,6 @@
 # Exercise 6: Implementing Content Filtering and Responsible AI
 
-## Estimated Duration: 30 Minutes
+## Estimated Duration: 15 Minutes
 
 ## Overview
 

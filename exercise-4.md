@@ -1,6 +1,6 @@
 # Exercise 4: Agent Deployment and Runtime Management in Azure AI Foundry
 
-## Estimated Duration: 30 Minutes
+## Estimated Duration: 15 Minutes
 
 ## Overview
 
