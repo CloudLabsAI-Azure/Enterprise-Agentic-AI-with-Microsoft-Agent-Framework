@@ -26,15 +26,15 @@ It allows agents to retrieve factual information, invoke APIs, and perform actio
 
 1. In the Azure Portal, navigate to your resource group, and from the resource list select **ai-knowledge-<inject key="DeploymentID" enableCopy="false"/>** Search service.
 
-   ![](/media/ss-3.png)
+   ![](./media/ss-3.png)
 
 1. Select **Keys (1)** from the left menu, under Settings and copy the **Query Key (2)** using the copy option as shown.
 
-   ![](/media/ss-47.png)
+   ![](./media/ss-47.png)
 
 1. Once copied, paste it safely in a notepad, select **Indexes** from left menu under Search Management and copy the **Index Name (2)**.
 
-   ![](/media/ss-48.png)
+   ![](./media/ss-48.png)
 
 1. As you have created a multi-agent system before, in the visual studio code pane, select `.env` file, as you have to add AI Search keys for connection.
 
@@ -46,21 +46,21 @@ It allows agents to retrieve factual information, invoke APIs, and perform actio
    AZURE_SEARCH_INDEX=[Index_Name]
    ```
 
-   ![](/media/ss-49.png)
+   ![](./media/ss-49.png)
    
    >**Note:** Please replace the `Query_Key` and `Index_Name` values with the ones you have copied earlier.
 
 1. Once done, click on the **Create Folder** option as shown and when it prompts, provide the folder name as `tools`.
 
-   ![](/media/ss-50.png)
+   ![](./media/ss-50.png)
 
 1. Once after creating, the folder structure will look similar to this.
 
-   ![](/media/ss-51.png)
+   ![](./media/ss-51.png)
 
 1. Now, select **tools (1)** folder created before and click on **Create file (2)** option as shown. This will create a file under tools folder. 
 
-   ![](/media/ss-53.png)
+   ![](./media/ss-53.png)
 
 1. Provide the name for the file as `azure_search_tool.py`. 
 
@@ -174,7 +174,7 @@ It allows agents to retrieve factual information, invoke APIs, and perform actio
       asyncio.run(main())
    ```
 
-   ![](/media/ss-54.png)
+   ![](./media/ss-54.png)
 
    >Purpose of AzureSearchTool:
    >- This tool provides an async MCP-compatible interface for agents to query the Azure Cognitive Search index and retrieve factual context snippets relevant to user queries.
@@ -190,11 +190,11 @@ It allows agents to retrieve factual information, invoke APIs, and perform actio
 
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
-   ![](/media/ss-39.png)
+   ![](./media/ss-39.png)
 
 1. Select the **... (1)** option from the top menu to extend the menu. Select **Terminal (2)** and click on **New Terminal (3)**.
 
-   ![](/media/ss-40.png)
+   ![](./media/ss-40.png)
 
 1. Run the below command to test out the working of search tool.
 
@@ -202,7 +202,7 @@ It allows agents to retrieve factual information, invoke APIs, and perform actio
    python .\tools\azure_search_tool.py
    ```
 
-   ![](/media/ss-57.png)
+   ![](./media/ss-57.png)
 
 1. You have successfully created an MCP tool that connects your Azure AI Search data to the agent, enabling it to retrieve relevant context from your indexed knowledge base.
 
@@ -481,7 +481,7 @@ In this task you will attach the AzureSearchTool to HR/Finance/Compliance agents
       asyncio.run(main())
     ```
 
-   ![](/media/ss-56.png)
+   ![](./media/ss-56.png)
 
    >Purpose of Updated Main Script:
    >- This version extends the earlier orchestrator to integrate Azure AI Search via MCP, enabling each agent’s responses to be context-grounded using enterprise data instead of generic LLM reasoning.
@@ -497,11 +497,11 @@ In this task you will attach the AzureSearchTool to HR/Finance/Compliance agents
 
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
-   ![](/media/ss-39.png)
+   ![](./media/ss-39.png)
 
 1. Select the **... (1)** option from the top menu to extend the menu. Select **Terminal (2)** and click on **New Terminal (3)**.
 
-   ![](/media/ss-40.png)
+   ![](./media/ss-40.png)
 
 1. Once the terminal is open, run the following command to run the agent and review the responses for the test prompts provided in the code file.
 
@@ -509,7 +509,7 @@ In this task you will attach the AzureSearchTool to HR/Finance/Compliance agents
    python main.py
    ```
 
-   ![](/media/ss-55.png)
+   ![](./media/ss-55.png)
 
    > Check **Context retrived** parameter and review how the agent is getting the context from the grounded data.
 
@@ -521,7 +521,7 @@ In this task you will attach the AzureSearchTool to HR/Finance/Compliance agents
    
 1. Once after getting the response, in the next prompt add `q` to quit the agent or stop the agent.
 
-   ![](/media/ss-43.png)
+   ![](./media/ss-43.png)
 
 ### Task 3: Setting up Freshworks for Ticket Management
 
@@ -535,7 +535,7 @@ In this task, you will set up and configure Freshworks to enable tickets managem
 
 1. In the portal, select **Start free trial** to start the free trial.
 
-   ![](./media/fw1.png)
+   ![](../media/fw1.png)
 
 1. In the next pane, provide these details and click on **Try it free (5)**:
 
@@ -544,7 +544,7 @@ In this task, you will set up and configure Freshworks to enable tickets managem
    - **Work email:** **<inject key="AzureAdUserEmail"></inject>** **(3)**
    - **Company name:** `Contoso` **(4)**
 
-   ![](./media/fw2.png)
+   ![](../media/fw2.png)
 
 1. In the next pane, provide these details and click on **Next (4)**:
 
@@ -552,49 +552,49 @@ In this task, you will set up and configure Freshworks to enable tickets managem
    - **How many employees are there in your company?:** select **1-10 (2)**
    - select **I'm trying customer service software for the first time (3)**
 
-   ![](./media/fw3.png)
+   ![](../media/fw3.png)
 
 1. Once done, navigate to [Outlook](https://go.microsoft.com/fwlink/p/?LinkID=2125442&clcid=0x409&culture=en-us&country=us).
 
 1. In the pick an account pane, select the account which you are assigned for this lab.
 
-   ![](./media/fw4.png)
+   ![](../media/fw4.png)
 
 1. In the freshworks verification email, open and click on **Activate Account**.
 
-   ![](./media/fw5.png)
+   ![](../media/fw5.png)
 
    >**Note:** If you're unable to locate the activation email from Freshworks, please wait a few minutes, as there might be a delay in email delivery. If the email doesn't arrive after some time, consider reinitiating the steps to activate your free trial in a new private/incognito window. Additionally, check your spam or junk folder, as the email might have been filtered there.
 
 1. In the next pane, provide **<inject key="AzureAdUserPassword"></inject>** as **Enter password (1)** and provide the same password for **Confirm password (2)**. Click on **Activate your account (3)**.
 
-   ![](./media/fw6.png)
+   ![](../media/fw6.png)
 
 1. Once you are in the portal, click on the **Profile (1)** icon from top right corner and select **Profile settings (2)**.
 
-   ![](./media/fw7.png)
+   ![](../media/fw7.png)
 
 1. In the profile page, click on **View API Key** to get the API Keys.
 
-   ![](./media/fw8.png)
+   ![](../media/fw8.png)
 
    >**Note:** If you are not able to find this option, please minimize the screensize using **CTRL + -**.
 
 1. In the next pane, complete the **CAPTCHA**.
 
-   ![](./media/fw9.png)
+   ![](../media/fw9.png)
 
 1. Please copy the API Key to a notepad, you will be using this further.
 
-   ![](./media/fw10.png)
+   ![](../media/fw10.png)
 
 1. From the browser tab, please copy the **Account URL** as shown and copy the value to notepad. You will be using this further.
 
-   ![](./media/ss-67.png)
+   ![](../media/ss-67.png)
 
 1. From the left, click on **Tickets** icon from left menu, you can see some default tickets which are present.
 
-   ![](./media/fw11.png)
+   ![](../media/fw11.png)
 
 1. Once done, navigate to Visual Studio Code pane and open `.env` file.
 
@@ -606,11 +606,11 @@ In this task, you will set up and configure Freshworks to enable tickets managem
    FRESHDESK_API_KEY=[API_Key]
    ```
 
-   ![](/media/ss-58.png)
+   ![](./media/ss-58.png)
 
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
-   ![](/media/ss-39.png)
+   ![](./media/ss-39.png)
 
 ### Task 4: Connect Agents to an External API (Freshdesk MCP Integration)
 
@@ -621,11 +621,11 @@ This tool will allow agents, especially Finance and HR to create real tickets wh
 
 1. From the explorer menu, select **tools (1)** folder and click on **Create File (2)** option. 
 
-   ![](/media/ss-59.png)
+   ![](./media/ss-59.png)
 
 1. Provide the file name as `freshdesk_tool.py`.
 
-   ![](/media/ss-60.png)
+   ![](./media/ss-60.png)
 
 1. Now, select the file and add the following code snipet to configure the tool.
 
@@ -716,7 +716,7 @@ This tool will allow agents, especially Finance and HR to create real tickets wh
                return {"status": "error", "error": str(e)}
    ```
 
-   ![](/media/ss-61.png)
+   ![](./media/ss-61.png)
 
    >Purpose of FreshdeskTool:
    >- This class provides an asynchronous interface to integrate the Freshdesk REST API into your agent workflow, enabling automated ticket creation directly from agent actions.
@@ -731,7 +731,7 @@ This tool will allow agents, especially Finance and HR to create real tickets wh
 
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
-   ![](/media/ss-39.png)
+   ![](./media/ss-39.png)
 
 1. From the explorer menu, select `main.py`.
 
@@ -1228,7 +1228,7 @@ This tool will allow agents, especially Finance and HR to create real tickets wh
       asyncio.run(main())
    ```
 
-   ![](/media/ss-62.png)
+   ![](./media/ss-62.png)
 
    >run_multi_agent_with_user_info():
    >- This function extends the original multi-agent logic to handle personalized user interactions and automated ticket creation.
@@ -1241,11 +1241,11 @@ This tool will allow agents, especially Finance and HR to create real tickets wh
 
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
-   ![](/media/ss-39.png)
+   ![](./media/ss-39.png)
 
 1. Select the **... (1)** option from the top menu to extend the menu. Select **Terminal (2)** and click on **New Terminal (3)**.
 
-   ![](/media/ss-40.png)
+   ![](./media/ss-40.png)
 
 1. Once the terminal is open, run the following command to run the agent and review the responses and ticket creation.
 
@@ -1253,11 +1253,11 @@ This tool will allow agents, especially Finance and HR to create real tickets wh
    python main.py
    ```
 
-   ![](/media/ss-63.png)
+   ![](./media/ss-63.png)
 
 1. Navigate to freshdesk portal, select **Tickets** from the left menu and check the new ticket created.
 
-   ![](/media/ss-64.png)
+   ![](./media/ss-64.png)
 
    >**Note:** If you are not able to se ethe ticket, wait for few seconds or refresh the page to see it.
 
@@ -1269,13 +1269,13 @@ This tool will allow agents, especially Finance and HR to create real tickets wh
 
 1. Navigate back to freshworks and check the new ticket created and review how the agent added the details using the given details.
 
-   ![](/media/ss-65.png)
+   ![](./media/ss-65.png)
    
-   ![](/media/ss-66.png)
+   ![](./media/ss-66.png)
 
 1. Once after getting the response, in the next prompt add `q` to quit the agent or stop the agent.
 
-   ![](/media/ss-43.png)
+   ![](./media/ss-43.png)
 
 1. You have successfully built a multi-agent system that retrieves contextual knowledge from Azure AI Search and seamlessly integrates with Freshdesk for enterprise ticket management.
 

@@ -40,15 +40,15 @@ In this task, you will review the preconfigured folder structure to understand w
 
 1. Please review the folder structure of the enterprise agent.
 
-   ![](/media/ss-27.png)
+   ![](./media/ss-27.png)
 
 1. Right-Click on **.env.example (1)** file and select **Rename (2)** to rename the file.
 
-   ![](/media/ss-28.png)
+   ![](./media/ss-28.png)
 
 1. Once done, rename the file from **.env.example** --> **.env** to make this environmnet file active for this agent.
 
-   ![](/media/ss-29.png)
+   ![](./media/ss-29.png)
 
 1. Replace the content of env file with the below content.
 
@@ -61,9 +61,9 @@ In this task, you will review the preconfigured folder structure to understand w
 
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
-   ![](/media/ss-39.png)
+   ![](./media/ss-39.png)
 
-   ![](/media/ss-33.png)
+   ![](./media/ss-33.png)
 
 
 ### Task 2: Create Planner Agent
@@ -72,7 +72,7 @@ In this task, you will define the Planner Agent that interprets user queries and
 
 1. From the list, select `planner_agent.py` under agent folder.
 
-   ![](/media/ss-34.png)
+   ![](./media/ss-34.png)
 
 1. Add the following python code to configure planner agent.
 
@@ -138,7 +138,7 @@ In this task, you will define the Planner Agent that interprets user queries and
                return "COMPLIANCE"
    ```
 
-   ![](/media/ss-35.png)
+   ![](./media/ss-35.png)
 
    > Purpose of Planner Agent:
    > - This agent is designed to analyze user queries and decide which specialist agent (HR, Finance, or Compliance) should handle the response.
@@ -157,7 +157,7 @@ In this task, you will define the Planner Agent that interprets user queries and
 
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
-   ![](/media/ss-39.png)
+   ![](./media/ss-39.png)
 
 ### Task 3: Create Worker Agents
 
@@ -195,7 +195,7 @@ In this task, you will develop domain-specific agents responsible for HR, Financ
       )
    ```
 
-   ![](/media/ss-36.png)
+   ![](./media/ss-36.png)
 
    >Purpose of the HR Agent:
    > - This agent acts as a dedicated HR policy expert, trained to respond to questions related to employee welfare, leave structures, benefits, and workplace procedures.
@@ -214,7 +214,7 @@ In this task, you will develop domain-specific agents responsible for HR, Financ
 
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
-   ![](/media/ss-39.png)
+   ![](./media/ss-39.png)
 
 1. From the list, select `finance_agent.py` under agent folder and add the following python code to configure compliance agent. Add the following python code to configure finance agent.
 
@@ -241,7 +241,7 @@ In this task, you will develop domain-specific agents responsible for HR, Financ
       )
    ```
 
-   ![](/media/ss-45.png)
+   ![](./media/ss-45.png)
 
    >Specialized Finance Role:
    > - This agent is designed to handle all finance-related topics, including reimbursement policies, travel budgets, allowances, and purchase approvals.
@@ -260,7 +260,7 @@ In this task, you will develop domain-specific agents responsible for HR, Financ
 
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
-   ![](/media/ss-39.png)
+   ![](./media/ss-39.png)
 
 1. From the list, select `compliance_agent.py` under agent folder and add the following python code to configure compliance agent. Add the following python code to configure compliance agent.
 
@@ -295,7 +295,7 @@ In this task, you will develop domain-specific agents responsible for HR, Financ
       )
    ```
 
-   ![](/media/ss-37.png)
+   ![](./media/ss-37.png)
 
    >Purpose of the Agent:
    > - This agent serves as a dedicated legal and compliance authority, responsible for handling queries related to GDPR, regulatory frameworks, contract law, risk assessments, and security standards.
@@ -314,7 +314,7 @@ In this task, you will develop domain-specific agents responsible for HR, Financ
 
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
-   ![](/media/ss-39.png)
+   ![](./media/ss-39.png)
 
 ### Task 4: Define A2A Routing Logic (Agent Graph / Workflow)
 
@@ -504,7 +504,7 @@ In this task, you will implement routing logic using an Agent Workflow so the Pl
 
    ```
 
-   ![](/media/ss-46.png)
+   ![](./media/ss-46.png)
 
    >Central Execution Engine:
    > - This script acts as the core orchestrator, coordinating all agents (Planner, HR, Finance, Compliance) and managing multi-agent routing using the Microsoft Agent Framework.
@@ -524,7 +524,7 @@ In this task, you will implement routing logic using an Agent Workflow so the Pl
 
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
-   ![](/media/ss-39.png)
+   ![](./media/ss-39.png)
 
 ### Task 5: Test Multi-Agent Conversation & Inspect Logs
 
@@ -536,7 +536,7 @@ In this task, you will run end-to-end test queries through the multi-agent syste
 
 1. Select the **... (1)** option from the top menu to extend the menu. Select **Terminal (2)** and click on **New Terminal (3)**.
 
-   ![](/media/ss-40.png)
+   ![](./media/ss-40.png)
 
 1. Once the terminal is open, run the following command to run the agent and review the responses for the test prompts provided in the code file.
 
@@ -544,7 +544,7 @@ In this task, you will run end-to-end test queries through the multi-agent syste
    python main.py
    ```
 
-   ![](/media/ss-41.png)
+   ![](./media/ss-41.png)
 
    > Check **Routed to** parameter and review how the agent is determining and routing the requests to respective worker agents.
 
@@ -556,11 +556,11 @@ In this task, you will run end-to-end test queries through the multi-agent syste
    python main.py --interactive
    ```
 
-   ![](/media/ss-42.png)
+   ![](./media/ss-42.png)
 
 1. Once after getting the response, in the next prompt add `q` to quit the agent or stop the agent.
 
-   ![](/media/ss-43.png)
+   ![](./media/ss-43.png)
 
 ## Summary
 

@@ -28,13 +28,13 @@ In this task, you’ll integrate OpenTelemetry and Agent Framework observability
 
 1. Once done, click on **file** option from top menu and select **Open Folder**.
 
-   ![](/media/ss-81.png)
+   ![](./media/ss-81.png)
 
 1. In the open folder pane, navigate to `C:\telemetry-codefiles` and click on select folder.
 
 1. Once opened, the files in the explorer menu looks similar to this.
 
-   ![](/media/ss-82.png)
+   ![](./media/ss-82.png)
 
 1. Please go through the code files, review how the opentelemetry implemented in all agents and how the tracing is happening.
 
@@ -71,11 +71,11 @@ In this task, you’ll integrate OpenTelemetry and Agent Framework observability
 
 1. Once reviewed, right-Click on **.env.example (1)** file and select **Rename (2)** to rename the file.
 
-   ![](/media/ss-28.png)
+   ![](./media/ss-28.png)
 
 1. Once done, rename the file from **.env.example** --> **.env** to make this environmnet file active for this agent.
 
-   ![](/media/ss-29.png)
+   ![](./media/ss-29.png)
 
 1. Now, select the `.env` file and paste the content which you've copied earlier.
 
@@ -88,13 +88,13 @@ In this task, you’ll integrate OpenTelemetry and Agent Framework observability
    ENABLE_SENSITIVE_DATA=true
    ```
 
-   ![](/media/ss-84.png)
+   ![](./media/ss-84.png)
 
 1. Once done, please save the file.
 
 1. Select the **... (1)** option from the top menu to extend the menu. Select **Terminal (2)** and click on **New Terminal (3)**.
 
-    ![](/media/ss-40.png)
+    ![](./media/ss-40.png)
 
 1. Run the below command to test out the working of search tool.
 
@@ -102,7 +102,7 @@ In this task, you’ll integrate OpenTelemetry and Agent Framework observability
     python main.py
     ```
 
-    ![](/media/ss-80.png)
+    ![](./media/ss-80.png)
 
 
 ### Task 2: Visualize Agent Metrics

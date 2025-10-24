@@ -49,11 +49,11 @@ In this task, you’ll update the existing agent to be persistant agent and publ
     AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4o-mini
     ```
 
-    ![](/media/ss-68.png)
+    ![](./media/ss-68.png)
 
 1. Once updated, the file will look similar to this.
 
-    ![](/media/ss-69.png)
+    ![](./media/ss-69.png)
 
 1. Now, you have to update the agents one by one. Select `compliance_agent.py` from explorer menu under **agents**. Replace the content by adding the below code snippet.
 
@@ -134,7 +134,7 @@ In this task, you’ll update the existing agent to be persistant agent and publ
             )
     ```
 
-    ![](/media/ss-70.png)
+    ![](./media/ss-70.png)
 
     >Integration with Azure AI Project Client:
     >- The AIProjectClient connects directly to your Azure AI Foundry project endpoint, allowing the script to list, retrieve, or create agents that are hosted persistently within Foundry.
@@ -153,7 +153,7 @@ In this task, you’ll update the existing agent to be persistant agent and publ
 
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
-    ![](/media/ss-39.png)
+    ![](./media/ss-39.png)
 
 1. Select `finance_agent.py` file, and replace the content with below code snippet to configure persistant finance agent.
 
@@ -226,7 +226,7 @@ In this task, you’ll update the existing agent to be persistant agent and publ
             )
     ```
 
-    ![](/media/ss-71.png)
+    ![](./media/ss-71.png)
 
     >Persistent Agent Management via Azure AI Foundry:
     >- The AIProjectClient connects to your Azure AI Foundry project, enabling the script to list, find, or create persistent agents that live within the Foundry environment instead of running locally.
@@ -245,7 +245,7 @@ In this task, you’ll update the existing agent to be persistant agent and publ
 
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
-    ![](/media/ss-39.png)
+    ![](./media/ss-39.png)
 
 1. Now, select `hr_agent.py` file, replace the code with the following, which converts a stateless chat agent to a persistant agent.
 
@@ -325,7 +325,7 @@ In this task, you’ll update the existing agent to be persistant agent and publ
             )
     ```
 
-    ![](/media/ss-72.png)
+    ![](./media/ss-72.png)
 
     >This update converts the HR Agent into a persistent, cloud-hosted agent within Azure AI Foundry.
     >It connects to the Foundry project using AIProjectClient, reuses the existing "Enterprise-HRAgent" if deployed, or creates a new one with specialized HR domain instructions.
@@ -333,7 +333,7 @@ In this task, you’ll update the existing agent to be persistant agent and publ
 
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
-    ![](/media/ss-39.png)
+    ![](./media/ss-39.png)
 
 1. Select `planner_agent.py` file, and replace the content with below code snippet to configure persistant orchestrator.
 
@@ -436,13 +436,13 @@ In this task, you’ll update the existing agent to be persistant agent and publ
                 return "COMPLIANCE"
     ```
 
-    ![](/media/ss-73.png)
+    ![](./media/ss-73.png)
 
     >It connects through the AIProjectClient, reuses the existing "Enterprise-PlannerAgent" if already deployed, or creates a new one with routing logic that classifies queries into HR, Finance, or Compliance categories.
 
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
-    ![](/media/ss-39.png)
+    ![](./media/ss-39.png)
 
 1. Now, select `main.py` from root and replace the code with the below given snippet. for all the code files please replace the code carefully as python is sensitive for indentations.
 
@@ -962,17 +962,17 @@ In this task, you’ll update the existing agent to be persistant agent and publ
         asyncio.run(main())
     ```
 
-    ![](/media/ss-74.png)
+    ![](./media/ss-74.png)
 
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
-    ![](/media/ss-39.png)
+    ![](./media/ss-39.png)
 
 1. The agents are updated successfully with the persistance configurations. Now, run the agent to check the creation o agents in AI Foundry Portal.
 
 1. Select the **... (1)** option from the top menu to extend the menu. Select **Terminal (2)** and click on **New Terminal (3)**.
 
-    ![](/media/ss-40.png)
+    ![](./media/ss-40.png)
 
 1. Run the below command to test out the working of search tool.
 
@@ -980,19 +980,19 @@ In this task, you’ll update the existing agent to be persistant agent and publ
     python main.py
     ```
 
-    ![](/media/ss-75.png)
+    ![](./media/ss-75.png)
 
 1. Open Azure Portal which is opened previously,navigate to your resource group, from the resource list, select **agent-<inject key="DeploymentID" enableCopy="false"/>** AI foundry resource.
 
-    ![](/media/ss-11.png)
+    ![](./media/ss-11.png)
 
 1. In the next pane, click on **Go to Azure AI Foundry portal**. you will now be navigated to AI Foundry portal.
 
-    ![](/media/ss-12.png)
+    ![](./media/ss-12.png)
 
 1. Once navigated to AI Foundry Portal, select **Agents (1)** from the left menu you will see all the agents got resgitered in the AI Foundry portal.
 
-    ![](/media/ss-76.png)
+    ![](./media/ss-76.png)
 
     >As part of using the Microsoft Agent Framework, the agents are designed to operate within either local or cloud-hosted environments, managed programmatically through the SDK rather than the Azure AI Foundry portal UI. Once deployed, these agents persist within the Foundry-managed environment and continue to run as services.
 
