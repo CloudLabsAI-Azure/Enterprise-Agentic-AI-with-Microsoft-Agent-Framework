@@ -13,7 +13,7 @@ You'll perform the following task in this exercise
 - Task 1: Understanding Responsible AI and Content Safety
 - Task 2: Configure and Validate Content Filters in Azure AI Foundry
 
-### Task 1: Understanding Responsible AI and Content Safety
+### Task 1: Understanding Responsible AI and Content Safety [Read - Only]
 
 In this task, you will learn about Microsoft’s Responsible AI principles and understand how they apply to the Microsoft Agent Framework and Azure AI Foundry.
 Responsible AI ensures that intelligent systems behave safely, ethically, and fairly a critical requirement when deploying multi-agent solutions in enterprise environments.

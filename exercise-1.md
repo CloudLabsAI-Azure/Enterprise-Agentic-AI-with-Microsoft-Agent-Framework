@@ -27,9 +27,7 @@ In this task, ingest corporate policy documents into Azure Blob Storage and inde
 
    ![](./media/ss-1.png)
 
-1. From the resource groups pane, select **agentic-ai-<inject key="DeploymentID" enableCopy="false"/>** resource group.
-
-   ![](./media/ss-2.png)
+1. From the resource groups pane, select **agentic-ai** resource group.
 
 1. Once in overview page, from the resource list, select **ai-knowledge-<inject key="DeploymentID" enableCopy="false"/>** search service.
 
