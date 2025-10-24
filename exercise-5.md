@@ -4,7 +4,7 @@
 
 ## Overview
 
-In this exercise, you will focus on AgentOps — the discipline of monitoring, governing, and managing AI agents in production environments.
+In this exercise, you will focus on AgentOps, the discipline of monitoring, governing, and managing AI agents in production environments.
 You’ll explore how to enable observability and telemetry using the Microsoft Agent Framework’s built-in integration with Application Insights using **OpenTelemetry**.
 
 #### About OpenTelemetry in Microsoft Agent Framework
