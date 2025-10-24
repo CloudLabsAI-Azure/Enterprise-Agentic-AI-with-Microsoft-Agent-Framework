@@ -535,7 +535,7 @@ In this task, you will set up and configure Freshworks to enable tickets managem
 
 1. In the portal, select **Start free trial** to start the free trial.
 
-   ![](../media/fw1.png)
+   ![](./media/fw1.png)
 
 1. In the next pane, provide these details and click on **Try it free (5)**:
 
@@ -544,7 +544,7 @@ In this task, you will set up and configure Freshworks to enable tickets managem
    - **Work email:** **<inject key="AzureAdUserEmail"></inject>** **(3)**
    - **Company name:** `Contoso` **(4)**
 
-   ![](../media/fw2.png)
+   ![](./media/fw2.png)
 
 1. In the next pane, provide these details and click on **Next (4)**:
 
@@ -552,49 +552,49 @@ In this task, you will set up and configure Freshworks to enable tickets managem
    - **How many employees are there in your company?:** select **1-10 (2)**
    - select **I'm trying customer service software for the first time (3)**
 
-   ![](../media/fw3.png)
+   ![](./media/fw3.png)
 
 1. Once done, navigate to [Outlook](https://go.microsoft.com/fwlink/p/?LinkID=2125442&clcid=0x409&culture=en-us&country=us).
 
 1. In the pick an account pane, select the account which you are assigned for this lab.
 
-   ![](../media/fw4.png)
+   ![](./media/fw4.png)
 
 1. In the freshworks verification email, open and click on **Activate Account**.
 
-   ![](../media/fw5.png)
+   ![](./media/fw5.png)
 
    >**Note:** If you're unable to locate the activation email from Freshworks, please wait a few minutes, as there might be a delay in email delivery. If the email doesn't arrive after some time, consider reinitiating the steps to activate your free trial in a new private/incognito window. Additionally, check your spam or junk folder, as the email might have been filtered there.
 
 1. In the next pane, provide **<inject key="AzureAdUserPassword"></inject>** as **Enter password (1)** and provide the same password for **Confirm password (2)**. Click on **Activate your account (3)**.
 
-   ![](../media/fw6.png)
+   ![](./media/fw6.png)
 
 1. Once you are in the portal, click on the **Profile (1)** icon from top right corner and select **Profile settings (2)**.
 
-   ![](../media/fw7.png)
+   ![](./media/fw7.png)
 
 1. In the profile page, click on **View API Key** to get the API Keys.
 
-   ![](../media/fw8.png)
+   ![](./media/fw8.png)
 
    >**Note:** If you are not able to find this option, please minimize the screensize using **CTRL + -**.
 
 1. In the next pane, complete the **CAPTCHA**.
 
-   ![](../media/fw9.png)
+   ![](./media/fw9.png)
 
 1. Please copy the API Key to a notepad, you will be using this further.
 
-   ![](../media/fw10.png)
+   ![](./media/fw10.png)
 
 1. From the browser tab, please copy the **Account URL** as shown and copy the value to notepad. You will be using this further.
 
-   ![](../media/ss-67.png)
+   ![](./media/ss-67.png)
 
 1. From the left, click on **Tickets** icon from left menu, you can see some default tickets which are present.
 
-   ![](../media/fw11.png)
+   ![](./media/fw11.png)
 
 1. Once done, navigate to Visual Studio Code pane and open `.env` file.
 
@@ -1329,3 +1329,4 @@ In this exercise, you successfully tested the complete multi-agent system where 
 
 
   
+
