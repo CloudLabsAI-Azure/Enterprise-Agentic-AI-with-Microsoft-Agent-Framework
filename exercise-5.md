@@ -1,4 +1,4 @@
-# Exercise 5: AgentOps - Observability, Governance and Lifecycle Management 
+# Exercise 5: AgentOps – Observability and Management
 
 ## Estimated Duration: 60 Minutes
 
