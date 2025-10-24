@@ -37,6 +37,10 @@ You'll perform the following task in this exercise
 
 In this task, you’ll update the existing agent to be persistant agent and publish each agent to AI Foundry Agent Service as standalone models.
 
+1.  
+
+   ![](/media/ss-68.png)
+
 ## Summary
 
 In this exercise, you successfully deployed your locally built multi-agent system into the Azure AI Foundry Agent Service.
