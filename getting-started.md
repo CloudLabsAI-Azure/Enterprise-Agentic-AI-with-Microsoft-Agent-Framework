@@ -10,11 +10,11 @@ By the end of the lab, learners will have deployed their agents to the Azure AI 
 
 ## Objectives
 
-- Build a **RAG** knowledge base with **Azure AI Search** and connect it to agents via an **MCP tool**.
-- Author single- and multi-agent workflows with the **Microsoft Agent Framework SDK**.
-- Implement **A2A (Agent-to-Agent)** routing: Planner → HR/Finance/Compliance.
-- Integrate an external system (**Freshdesk**) to create real tickets from agent actions.
-- Deploy to **Azure AI Foundry Agent Service** and analyze **Thread Logs** & **Monitoring**.
+- Build a RAG knowledge base with Azure AI Search and connect it to agents via an MCP tool.
+- Author single- and multi-agent workflows with the Microsoft Agent Framework SDK.
+- Implement A2A (Agent-to-Agent) routing: Planner → HR/Finance/Compliance.
+- Integrate an external system (Freshdesk) to create real tickets from agent actions.
+- Deploy to Azure AI Foundry Agent Service and analyze Thread Logs & Monitoring.
 - Apply runtime policies (timeouts, rate limits, token budgets) for safe, cost-controlled ops.
 
 ## Pre-requisites
