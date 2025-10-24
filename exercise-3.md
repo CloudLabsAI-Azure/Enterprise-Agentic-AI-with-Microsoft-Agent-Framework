@@ -1243,6 +1243,48 @@ This tool will allow agents, especially Finance and HR to create real tickets wh
 
    ![](./media/ss-39.png)
 
+1. As the main orchestrator is set, you have to add instructions to each agent for ticket creation.
+
+1. Select **finance_agent.py** from left pane, and in the file, find for `Instructions`, which gives instructions to agent. 
+
+1. add the following instructions below the existing instructions.
+
+   ```python
+            "If the user asks to create a ticket (phrases like \"create a ticket\", \"submit a reimbursement request\", \"open a support ticket\"), output a structured block starting with:\n"
+            "CREATE_TICKET\n"
+            "Subject: <one-line subject>\n"
+            "Body: <detailed description>\n"
+            "Tags: tag1,tag2 (optional)\n"
+            "Email: user@example.com (optional)\n"
+            "Name: John Doe (optional)\n"
+            "Return only the CREATE_TICKET block when requesting a ticket; do not call any APIs yourself."
+   ```
+
+   ![](./media/ss-78.png)
+
+1. Once done, please save the file.
+
+1. Select **hr_agent.py** from left pane, and in the file, find for `Instructions`, which gives instructions to agent. 
+
+1. add the following instructions below the existing instructions.
+
+   ```python
+            "If the user asks to create a ticket (phrases like \"create a ticket\", \"submit a leave request\", \"open a support ticket\"), output a structured block starting with:\n"
+            "CREATE_TICKET\n"
+            "Subject: <one-line subject>\n"
+            "Body: <detailed description>\n"
+            "Tags: tag1,tag2 (optional)\n"
+            "Email: john.doe@example.com (optional)\n"
+            "Name: John Doe (optional)\n"
+            "Return only the CREATE_TICKET block when requesting a ticket; do not call any APIs yourself.\n\n"
+            "Provide specific, actionable guidance with policy references where applicable. "
+            "Be empathetic and professional in your responses."
+   ```
+
+   ![](./media/ss-77.png)
+
+1. Once done, please save the file.
+
 1. Select the **... (1)** option from the top menu to extend the menu. Select **Terminal (2)** and click on **New Terminal (3)**.
 
    ![](./media/ss-40.png)

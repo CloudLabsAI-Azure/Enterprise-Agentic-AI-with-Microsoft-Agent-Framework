@@ -240,7 +240,7 @@ In this task, you’ll use Azure Application Insights to visualize agent telemet
 
 - **User Experience Dashboard**
 
-   **Metrics Displayed: **
+   **Metrics Displayed:**
    - End-to-end request latency
    - Ticket creation rates
    - Knowledge retrieval success
