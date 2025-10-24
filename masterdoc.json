@@ -19,6 +19,14 @@
             {
                 "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/Enterprise-Agentic-AI-with-Microsoft-Agent-Framework/refs/heads/main/exercise-3.md",
                 "Order": 4
+            },
+                        {
+                "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/Enterprise-Agentic-AI-with-Microsoft-Agent-Framework/refs/heads/main/exercise-4.md",
+                "Order": 5
+            },
+                        {
+                "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/Enterprise-Agentic-AI-with-Microsoft-Agent-Framework/refs/heads/main/exercise-5.md",
+                "Order": 6
             }
         ]
     }
