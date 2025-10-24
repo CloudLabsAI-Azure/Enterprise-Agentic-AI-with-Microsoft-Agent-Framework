@@ -974,6 +974,39 @@ In this task, you’ll update the existing agent to be persistant agent and publ
 
     ![](./media/ss-40.png)
 
+1. In **VS Code** Terminal, run the Azure CLI sign-in command:
+
+   ```powershell
+   az login
+   ```
+
+    ![](./media/fr-co-ex1-g29.png)
+
+1. On the **Sign in** window, select **Work or school account** and click **Continue**.
+
+    ![](./media/fr-co-ex1-g30.png)
+
+1. 1. On the **Sign into Microsoft** tab, enter the provided email/username and click **Next**.
+
+   - **Email/Username:** <inject key="AzureAdUserEmail"></inject>
+
+        ![](./media/fr-co-ex1-g31.png)
+
+1. Enter the password and click **Sign in**.
+
+   - **Password:** <inject key="AzureAdUserPassword"></inject>
+
+        ![](./media/gs-3.png)
+
+1. When prompted with the sign-in options, select **No, this app only** to continue without linking other desktop apps.
+
+    ![](./media/fr-co-ex1-g32.png)
+
+1. When prompted to select a subscription and tenant, type **1** and press **Enter** to continue.
+.
+
+    ![](./media/fr-co-ex1-g33.png)
+
 1. Run the below command to test out the working of search tool.
 
     ```

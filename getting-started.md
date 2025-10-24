@@ -79,7 +79,7 @@ Feel free to start, stop, or restart your virtual machine as needed from the Res
 
    - Email/Username: <inject key="AzureAdUserEmail"></inject>
 
-     ![](./media/gs-2.png)
+     ![](./media/fr-co-ex1-g31.png)
 
 1. Now, enter the following password and click on **Sign in**.
 
