@@ -54,7 +54,7 @@ In this task, you will review the preconfigured folder structure to understand w
 
    ```
    AZURE_OPENAI_ENDPOINT=https://agent-<inject key="DeploymentID" enableCopy="false"/>.cognitiveservices.azure.com/
-   AZURE_OPENAI_API_KEY=<inject key="DeploymentID" enableCopy="false"/>
+   AZURE_OPENAI_API_KEY=<inject key="AzureAIFoundryApiKey" enableCopy="false"/>
    AZURE_OPENAI_RESPONSES_DEPLOYMENT_NAME=gpt-4o-mini
    AZURE_OPENAI_API_VERSION=2025-03-01-preview
    ```

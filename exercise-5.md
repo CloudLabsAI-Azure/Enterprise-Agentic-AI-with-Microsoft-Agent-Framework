@@ -84,7 +84,7 @@ In this task, you’ll integrate OpenTelemetry and Agent Framework observability
 
    ```
    # Observability and Monitoring Configuration
-   APPLICATIONINSIGHTS_CONNECTION_STRING=<Instrument-key>
+   APPLICATIONINSIGHTS_CONNECTION_STRING=<inject key="AppInsightsConnectionStringWithAppId" enableCopy="false"/>
    ENABLE_OTEL=true
    ENABLE_SENSITIVE_DATA=true
    ```
