@@ -986,7 +986,7 @@ In this task, you’ll update the existing agent to be persistant agent and publ
 
     ![](./media/fr-co-ex1-g30.png)
 
-1. 1. On the **Sign into Microsoft** tab, enter the provided email/username and click **Next**.
+1. On the **Sign into Microsoft** tab, enter the provided email/username and click **Next**.
 
    - **Email/Username:** <inject key="AzureAdUserEmail"></inject>
 
@@ -1034,3 +1034,4 @@ In this task, you’ll update the existing agent to be persistant agent and publ
 ## Summary
 
 In this exercise, you successfully deployed your locally built multi-agent system into the Azure AI Foundry Agent Service.
+
