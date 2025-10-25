@@ -45,7 +45,7 @@ Welcome to Enterprise-Agentic-AI-with-Microsoft-Agent-Framework Hands-On-Lab! , 
 
 Once you're ready to dive in, your virtual machine and Lab guide will be right at your fingertips within your web browser.
 
-![](./media/gs-1.png)
+![](./media/fr-gs-g2.png)
 
 ### Exploring Your Lab Resources
 
@@ -92,6 +92,10 @@ Feel free to start, stop, or restart your virtual machine as needed from the Res
 1. If you see the pop-up **Stay Signed in?**, click No.
 
    ![](./media/gs-4.png)
+
+1. If a **PowerShell** window opens and starts installing packages, **do not close it**. Click the **Minimize** button and continue with the lab.
+
+   ![](./media/fr-gs-g1.png)
 
 ## Support Contact
 
