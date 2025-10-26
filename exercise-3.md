@@ -1321,12 +1321,13 @@ This tool will allow agents, especially Finance and HR to create real tickets wh
 
 1. You have successfully built a multi-agent system that retrieves contextual knowledge from Azure AI Search and seamlessly integrates with Freshdesk for enterprise ticket management.
 
+<validation step="be166f85-667e-464a-9ce3-6fd73285c0ae" />
+ 
+> **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
+> - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help.
+
 ## Summary
 
 In this exercise, you successfully tested the complete multi-agent system where agents retrieved relevant information from Azure AI Search, identified the appropriate department to handle each query, and created Freshdesk tickets when necessary. This demonstrated how the agents can combine contextual reasoning with real-world actions, making them more efficient and practical for enterprise workflows.
-
-
-
-
-  
-
