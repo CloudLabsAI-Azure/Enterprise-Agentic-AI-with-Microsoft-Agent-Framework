@@ -562,6 +562,13 @@ In this task, you will run end-to-end test queries through the multi-agent syste
 
    ![](./media/ss-43.png)
 
+<validation step="07cfea7d-2156-42fa-9f5c-546c8e9049b9" />
+ 
+> **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
+> - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help.
+
 ## Summary
 
 In this exercise, you defined three agents (Planner, HR, Compliance) using the Microsoft Agent Framework SDK and registered them. You built a routing workflow to delegate user queries via Agent-to-Agent calls. You tested a multi-agent scenario and inspected logs to confirm correct message routing and execution flow.
