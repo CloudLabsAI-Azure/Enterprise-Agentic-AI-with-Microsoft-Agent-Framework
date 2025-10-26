@@ -183,8 +183,16 @@ In this task, you will test your agent by asking policy-related questions and re
 
 1. You’ve successfully built a RAG-based agent powered by curated enterprise datasets.Next, you’ll take this further by enabling multi-agent collaboration, where agents can delegate, reason, and work together intelligently.
 
+<validation step="4a924360-8830-4b51-b959-95eec3703f95" />
+ 
+> **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
+> - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help.
+
 ## Summary
 
 In this exercise, you successfully created your first AI Agent in Azure AI Foundry and connected it to an indexed knowledge base. You uploaded documents, ingested them into Azure AI Search, and enabled RAG through Microsoft Agent Framework integration. By testing the agent and reviewing execution logs, you gained firsthand experience in how agents retrieve grounded information and generate enterprise-ready responses.
+
 
 
