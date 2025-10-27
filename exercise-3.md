@@ -390,9 +390,7 @@ In this task you will attach the AzureSearchTool to HR/Finance/Compliance agents
       """Run focused test queries with grounded data integration."""
       test_queries = [
          "What is the travel reimbursement limit for hotel stays?",
-         "How many vacation days are allowed per year?",
-         "Do we need GDPR compliance for EU customers?",
-         "What's the budget approval process for large purchases?"
+         "How many vacation days are allowed per year?"
       ]
       
       print("🧪 Running focused batch tests with grounded data integration...\n")
@@ -1331,4 +1329,5 @@ This tool will allow agents, especially Finance and HR to create real tickets wh
 ## Summary
 
 In this exercise, you successfully tested the complete multi-agent system where agents retrieved relevant information from Azure AI Search, identified the appropriate department to handle each query, and created Freshdesk tickets when necessary. This demonstrated how the agents can combine contextual reasoning with real-world actions, making them more efficient and practical for enterprise workflows.
+
 
