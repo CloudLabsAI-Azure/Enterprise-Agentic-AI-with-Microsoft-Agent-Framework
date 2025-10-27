@@ -274,6 +274,13 @@ In this task, you’ll use Azure Application Insights to visualize agent telemet
 
    ![](./media/ss-115.png)
 
+<validation step="46ab9acd-2c48-497b-9500-7598e785a262" />
+ 
+> **Congratulations** on completing the exercise! Now, it's time to validate it. Here are the steps:
+> - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help.
+
 ## Summary
 
 In this exercise, you configured observability and monitoring for your enterprise agents. Using OpenTelemetry tracing, you captured detailed execution data for every workflow step, and by integrating with Azure Application Insights, you created dashboards to visualize performance metrics and agent health.
