@@ -47,6 +47,10 @@ Once you're ready to dive in, your virtual machine and Lab guide will be right a
 
 ![](./media/fr-gs-g2.png)
 
+1. If a **PowerShell** window opens and starts installing packages, **do not close it**. Click the **Minimize** button and continue with the lab.
+
+   ![](./media/fr-gs-g1.png)
+
 ### Exploring Your Lab Resources
 
 To get a better understanding of your Lab resources and credentials, navigate to the Environment tab.
@@ -93,9 +97,6 @@ Feel free to start, stop, or restart your virtual machine as needed from the Res
 
    ![](./media/gs-4.png)
 
-1. If a **PowerShell** window opens and starts installing packages, **do not close it**. Click the **Minimize** button and continue with the lab.
-
-   ![](./media/fr-gs-g1.png)
 
 ## Support Contact
 
@@ -107,4 +108,5 @@ The CloudLabs support team is available 24/7, 365 days a year, via email and liv
 Now, click on the **Next** from lower right corner to move on next page.
 
 ## Happy Learning!!
+
 
