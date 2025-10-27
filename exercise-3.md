@@ -50,7 +50,7 @@ It allows agents to retrieve factual information, invoke APIs, and perform actio
    
    >**Note:** Please replace the `Query_Key` and `Index_Name` values with the ones you have copied earlier.
 
-1. Once done, click on the **Create Folder** option as shown and when it prompts, provide the folder name as `tools`.
+1. Once done, click on the **Create Folder** option as shown and when it prompts, provide the folder name as `tools`. Please create new folder in root.
 
    ![](./media/ss-50.png)
 
@@ -1331,3 +1331,4 @@ This tool will allow agents, especially Finance and HR to create real tickets wh
 ## Summary
 
 In this exercise, you successfully tested the complete multi-agent system where agents retrieved relevant information from Azure AI Search, identified the appropriate department to handle each query, and created Freshdesk tickets when necessary. This demonstrated how the agents can combine contextual reasoning with real-world actions, making them more efficient and practical for enterprise workflows.
+
