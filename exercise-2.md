@@ -36,7 +36,13 @@ In this task, you will review the preconfigured folder structure to understand w
 
 1. Once Visual Studio code is open, click on **file** option and select **open folder** option to open the code file folder.
 
+   ![](./media/ss-81.png)
+
 1. Once in the open folder pane, navigate to `C:\enterprise-agent-code-files` and click on select folder.
+
+1. Once opened, a pop up window will be opened, click on **Yes, I trust authors** option.
+
+   ![](./media/ss-126.png)
 
 1. Please review the folder structure of the enterprise agent.
 
@@ -550,13 +556,19 @@ In this task, you will run end-to-end test queries through the multi-agent syste
 
 1. Now, run the agent again on interactive mode by adding `--interactive` flag. This lets you input the question and get the response back. Provide the below prompt as question once it asks.
 
-   > `Is employee data protected under GDPR?` 
+   - Command:
 
-   ```
-   python main.py --interactive
-   ```
+     ```
+     python main.py --interactive
+     ```
 
-   ![](./media/ss-42.png)
+   - Prompt:
+
+     ```
+     Is employee data protected under GDPR?
+     ```
+
+     ![](./media/ss-42.png)
 
 1. Once after getting the response, in the next prompt add `q` to quit the agent or stop the agent.
 

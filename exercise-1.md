@@ -96,11 +96,11 @@ In this task, you will create a new AI Agent in Azure AI Foundry and configure i
 
    ![](./media/ss-12.png)
 
-1. Once navigated to AI Foundry Portal, select **Agents (1)** from the left menu you will already see an agent pre created. If not created, then please click on **+ New agent (2)** option to get it created.
+1. Once navigated to AI Foundry Portal, select **Agents (1)** from the left menu you will already see an agent **pre created**. If not created, then please click on **+ New agent (2)** option to get it created.
 
    ![](./media/ss-13.png)
 
-1. Once done, select the created agent, a configuration pane will be opened on the right, provide the following details.
+1. Select the agent, a configuration pane will be opened on the right, provide the following details.
 
    | Parameter | Configuration |
    |-----------|---------------|
@@ -154,9 +154,9 @@ In this task, you will test your agent by asking policy-related questions and re
 
    ![](./media/ss-25.png)
 
-1. To test the agent's capability , in the same configuration pane scroll up and select **Try in playground** option.
+1. Once done, select, **Agents (1)** from left menu, and then choose the **EnterpriseAssistant (2)** agent and click on **Try in playground (3)**.
 
-   ![](./media/ss-20.png)
+   ![](./media/ss-125.png)
 
 1. A chat panel will open where you can enter your prompts. The agent will now respond using the documents and datasets you’ve connected.
 

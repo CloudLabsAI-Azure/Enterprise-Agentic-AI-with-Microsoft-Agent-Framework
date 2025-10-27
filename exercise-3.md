@@ -527,9 +527,12 @@ In this task, you will set up and configure Freshworks to enable tickets managem
 
 **Freshworks** is a cloud-based customer service and engagement platform designed to improve customer support operations and enhance user satisfaction. It offers a suite of tools for ticket management, live chat, help center creation, and customer self-service. Freshworks supports omnichannel communication, enabling businesses to manage customer interactions across email, chat, phone, and social media from a centralized interface. Its automation features help streamline workflows, assign tickets, and provide analytics for performance tracking. Now you will set up the Freshworks account.
 
-1. Navigate to [Freshworks Portal](https://www.freshworks.com/freshdesk/lp/home/?tactic_id=3387224&utm_source=google-adwords&utm_medium=FD-Search-Brand-India&utm_campaign=FD-Search-Brand-India&utm_term=freshdesk&device=c&matchtype=e&network=g&gclid=EAIaIQobChMIuOK90qvLjQMV_dQWBR3JAi9VEAAYASAAEgK87_D_BwE&audience=kwd-30002131023&ad_id=282519464145&gad_source=1&gad_campaignid=671502402) using a new tab in your browser.
+1. Copy the URL and paste it in a new tab in your browser inside the VM to open **Freshworks** portal.
 
-   >Note: Since you are working within a VM, please copy the above link and open it in the browser inside the VM.
+   - URL:
+     ```
+     https://www.freshworks.com/freshdesk/lp/home/?tactic_id=3387224&utm_source=google-adwords&utm_medium=FD-Search-Brand-India&utm_campaign=FD-Search-Brand-India&utm_term=freshdesk&device=c&matchtype=e&network=g&gclid=EAIaIQobChMIuOK90qvLjQMV_dQWBR3JAi9VEAAYASAAEgK87_D_BwE&audience=kwd-30002131023&ad_id=282519464145&gad_source=1&gad_campaignid=671502402
+     ```
 
 1. In the portal, select **Start free trial** to start the free trial.
 
@@ -552,8 +555,13 @@ In this task, you will set up and configure Freshworks to enable tickets managem
 
    ![](./media/fw3.png)
 
-1. Once done, navigate to [Outlook](https://go.microsoft.com/fwlink/p/?LinkID=2125442&clcid=0x409&culture=en-us&country=us).
+1. Once done, copy the below URL and paste it in a new tab in your browser inside VM to open **outlook**.
 
+   - URL:
+
+     ```
+     https://go.microsoft.com/fwlink/p/?LinkID=2125442&clcid=0x409&culture=en-us&country=us
+     ```
 1. In the pick an account pane, select the account which you are assigned for this lab.
 
    ![](./media/fw4.png)
@@ -603,6 +611,8 @@ In this task, you will set up and configure Freshworks to enable tickets managem
    FRESHDESK_DOMAIN=[Domain_URL]
    FRESHDESK_API_KEY=[API_Key]
    ```
+
+   ![](./media/ss-127.png)
 
    ![](./media/ss-58.png)
 

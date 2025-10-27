@@ -47,9 +47,9 @@ Once you're ready to dive in, your virtual machine and Lab guide will be right a
 
 ![](./media/fr-gs-g2.png)
 
-1. If a **PowerShell** window opens and starts installing packages, **do not close it**. Click the **Minimize** button and continue with the lab.
+If a **PowerShell** window opens and starts installing packages, **do not close it**. Click the **Minimize** button and continue with the lab.
 
-   ![](./media/fr-gs-g1.png)
+![](./media/fr-gs-g1.png)
 
 ### Exploring Your Lab Resources
 
@@ -71,13 +71,9 @@ Feel free to start, stop, or restart your virtual machine as needed from the Res
 
 ## Let's Get Started with Power Apps Portal
 
-1. In the JumpVM, click on **Microsoft Edge** shortcut of Microsoft Edge browser which is created on desktop.
+1. In the JumpVM, click on **Azure Portal** shortcut of Microsoft Edge browser which is created on desktop.
 
-   ![](./media/gs-1.png)
-
-1. Open a new browser tab and navigate to [Azure Portal](https://portal.azure.com/) portal.
-
-   >Note: Since you are working within a VM, please copy the above link and open it in the browser inside the VM.
+   ![](./media/gs-up1.png)
 
 1. On the **Sign into Microsoft** tab, you will see the login screen. Enter the provided email or username, and click **Next** to proceed.
 
