@@ -844,7 +844,6 @@ In this task, you’ll update the existing agent to be persistant agent and publ
         test_queries = [
             "What is the company's policy on remote work and flexible hours?",
             "What are the meal allowance limits for domestic business travel?",
-            "What are the GDPR requirements for processing customer personal data?"
         ]
         
         print("🧪 Running focused batch tests with grounded data integration...\n")
@@ -1034,4 +1033,5 @@ In this task, you’ll update the existing agent to be persistant agent and publ
 ## Summary
 
 In this exercise, you successfully deployed your locally built multi-agent system into the Azure AI Foundry Agent Service.
+
 
