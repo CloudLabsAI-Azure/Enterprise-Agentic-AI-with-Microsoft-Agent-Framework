@@ -122,7 +122,7 @@ In this task, you’ll use Azure Application Insights to visualize agent telemet
 
    ![](./media/ss-87.png)
 
-1. Once done, you will be able to see all the communicaton details happened with agent and all the transaction those aretaken place in the given time range. you can also adjust time range to explore more.
+1. Once done, you will be able to see all the communication details that happened with the agent, as well as all the transactions that took place within the given time range. You can also adjust the time range to explore more.
 
    ![](./media/ss-88.png)
 
@@ -278,3 +278,4 @@ In this task, you’ll use Azure Application Insights to visualize agent telemet
 
 
 In this exercise, you configured observability and monitoring for your enterprise agents. Using OpenTelemetry tracing, you captured detailed execution data for every workflow step, and by integrating with Azure Application Insights, you created dashboards to visualize performance metrics and agent health.
+
