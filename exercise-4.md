@@ -1029,16 +1029,10 @@ In this task, you’ll update the existing agent to be persistant agent and publ
 
     >From the next exercises onward, you will continue working locally to configure observability, monitoring, and tracing features — enabling you to visualize, analyze, and govern the behavior of these agents as they operate in the cloud.
 
-<validation step="faef51d9-5b14-4ca9-9921-f1b645345214" />
- 
-> **Congratulations** on completing the exercise! Now, it's time to validate it. Here are the steps:
-> - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
-> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help.
-
 ## Summary
 
 In this exercise, you successfully deployed your locally built multi-agent system into the Azure AI Foundry Agent Service.
+
 
 
 
