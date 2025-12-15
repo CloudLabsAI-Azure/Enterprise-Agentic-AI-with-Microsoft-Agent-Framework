@@ -47,7 +47,7 @@ In this task, ingest corporate policy documents into Azure Blob Storage and inde
 
    > here is what each of these options for - 
    >   - **Keyword Search:** Used for traditional search experiences based on exact keywords.It indexes text so users can find information through keyword matching, without AI reasoning.
-   >   - **RAG (Retrieval-Augmented Generation):** Combines document retrieval with AI generation.It ingests text (and simple OCR images) so an AI agent can provide grounded, context-aware answers.
+   >   - **RAG (Retrieval-Augmented Generation):** Combines document retrieval with AI generation. It ingests text (and simple OCR images) so an AI agent can provide grounded, context-aware answers.
    >   - **Multimodal RAG:** Extends RAG to handle complex visual content like diagrams, tables, workflows, or charts.It enables AI to interpret both text and visual elements for richer, insight-based responses.
 
 1. Once selected, in the next page, on connect to your data step, configure the parameters as given below and click on **Next (4)**.
@@ -160,14 +160,14 @@ In this task, you will test your agent by asking policy-related questions and re
 
 1. A chat panel will open where you can enter your prompts. The agent will now respond using the documents and datasets you’ve connected.
 
-   Sample prmpts - 
+   Sample prompts - 
 
    - `What is the employee travel reimbursement policy?`
    - `Summarize the contract approval rules and cite the document`
 
      ![](./media/ss-21.png)
 
-1. Once the agent responded to questions, click on **Thread logs** from top mnu to check the logs and traces of current thread.
+1. Once the agent responded to questions, click on **Thread logs** from top menu to check the logs and traces of current thread.
 
    ![](./media/ss-22.png)
    

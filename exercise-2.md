@@ -52,7 +52,7 @@ In this task, you will review the preconfigured folder structure to understand w
 
    ![](./media/ss-28.png)
 
-1. Once done, rename the file from **.env.example** --> **.env** to make this environmnet file active for this agent.
+1. Once done, rename the file from **.env.example** --> **.env** to make this environment file active for this agent.
 
    ![](./media/ss-29.png)
 
