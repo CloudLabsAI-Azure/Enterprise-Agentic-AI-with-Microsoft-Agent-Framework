@@ -25,7 +25,7 @@ In this task, you’ll integrate OpenTelemetry and Agent Framework observability
 
 1. Instead of modifying the previous code again, you’ll work in a new folder that already contains the updated observability-enabled files. Understand how telemetry, tracing, and monitoring are integrated using Microsoft Agent Framework Observability and Application Insights. 
 
-1. In visual studio code, before openening new folder, select `.env` file and copy the content and keep it safely in a notepad.
+1. In visual studio code, before opening new folder, select `.env` file and copy the content and keep it safely in a notepad.
 
 1. Once done, click on **file** option from top menu and select **Open Folder**.
 
@@ -118,15 +118,19 @@ In this task, you’ll use Azure Application Insights to visualize agent telemet
 
    ![](./media/ss-86.png)
 
-1. From the left menu, select **Transaction search (1)**, click on **Duration (2)** option as shown and select the Time range as **Last 30 minutes (3)** and click on **Apply (4)**.
+1. From the left menu, select **Search**, click on **See all data in last 24 hours**.
 
-   ![](./media/ss-87.png)
+   ![](./media/upimg-10.png)
+
+1. Once opened, from bottom, review the traces and then click on **View as individual items**.
+
+   ![](./media/upimg-11.png)
 
 1. Once done, you will be able to see all the communication details that happened with the agent, as well as all the transactions that took place within the given time range. You can also adjust the time range to explore more.
 
    ![](./media/ss-88.png)
 
-1. Explore and review these transations, you can open a detailed view just by clicking on them. Review how you can see all the details like agents, messages and retrival details.
+1. Explore and review these transactions, you can open a detailed view just by clicking on them. Review how you can see all the details like agents, messages and retrieval details.
 
    ![](./media/ss-89.png)
 
@@ -140,7 +144,7 @@ In this task, you’ll use Azure Application Insights to visualize agent telemet
 
    ![](./media/ss-92.png)
 
-1. Now, under monitoring from left menu, select **Metrics**. You can explore the custom metrics whih are published through span.
+1. Now, under monitoring from left menu, select **Metrics**. You can explore the custom metrics which are published through span.
 
    ![](./media/ss-93.png)
 
@@ -260,11 +264,11 @@ In this task, you’ll use Azure Application Insights to visualize agent telemet
 
 1. Navigate back to your resource group, from the resource list, select **agent-<inject key="DeploymentID" enableCopy="false"/>** AI foundry resource.
 
-   ![](./media/ss-11.png)
+   ![](./media/upimg-1.png)
 
 1. In the next pane, click on **Go to Azure AI Foundry portal**. you will now be navigated to AI Foundry portal, where you will be creating your first agent.
 
-   ![](./media/ss-12.png)
+   ![](./media/updimg-2.png)
 
 1. Now, navigate to **monitoring** pane, where you have connected application insights before and select **Resource usage** tab and review all the metrics and values.
 

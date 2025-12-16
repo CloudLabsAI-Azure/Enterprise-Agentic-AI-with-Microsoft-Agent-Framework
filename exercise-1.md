@@ -41,7 +41,7 @@ In this task, ingest corporate policy documents into Azure Blob Storage and inde
 
    ![](./media/ss-5.png)
 
-1. In the next pane, select **RAG** option as we are building a retrival based agent.
+1. In the next pane, select **RAG** option as we are building a retrieval based agent.
 
    ![](./media/ss-6.png)
 
@@ -55,11 +55,11 @@ In this task, ingest corporate policy documents into Azure Blob Storage and inde
    | Parameter | Configuration |
    |-----------|---------------|
    | Subscription | Leave it as default |
-   | Storage account | select **aistorage-<inject key="DeploymentID" enableCopy="false"/> (1)** from drop down |
+   | Storage account | select **aistorage<inject key="DeploymentID" enableCopy="false"/> (1)** from drop down |
    | Blob container | select **datasets (2)** container |
    | Parsing mode | select **Markdown (Preview) (3)** |
 
-   ![](./media/ss-7.png)
+   ![](./media/upimg-13.png)
 
 1. In the **vectorize your text** pane, configure the following details and proceed by clicking **Next (6)**.
 
@@ -73,7 +73,7 @@ In this task, ingest corporate policy documents into Azure Blob Storage and inde
 
    ![](./media/ss-8.png)
 
-1. In **Advanced setting** step, **uncheck Enable sementic ranker** box, as there is no requirement for your agent. Click on **Next (2)**.
+1. In **Advanced setting** step, **uncheck Enable semantic ranker** box, as there is no requirement for your agent. Click on **Next (2)**.
 
    ![](./media/ss-9.png)
 
@@ -90,15 +90,15 @@ In this task, you will create a new AI Agent in Azure AI Foundry and configure i
 
 1. Navigate back to your resource group, from the resource list, select **agent-<inject key="DeploymentID" enableCopy="false"/>** AI foundry resource.
 
-   ![](./media/ss-11.png)
+   ![](./media/upimg-1.png)
 
 1. In the next pane, click on **Go to Azure AI Foundry portal**. you will now be navigated to AI Foundry portal, where you will be creating your first agent.
 
-   ![](./media/ss-12.png)
+   ![](./media/updimg-2.png)
 
-1. Once navigated to AI Foundry Portal, select **Agents (1)** from the left menu you will already see an agent **pre created**. If not created, then please click on **+ New agent (2)** option to get it created.
+1. Once navigated to AI Foundry Portal, select **Agents (1)** from the left menu.
 
-   ![](./media/ss-13.png)
+   ![](./media/upimg-4.png)
 
 1. Select the agent, a configuration pane will be opened on the right, provide the following details.
 
@@ -136,7 +136,7 @@ In this task, you will integrate Azure AI Search with your agent using the knowl
    | Parameter | Configuration |
    |-----------|---------------|
    | Azure AI Search resource connection | Ensure **aiknowledge<inject key="DeploymentID" enableCopy="false"/>** connection is selected |
-   | Azure AI Searh index | select the index with prefix **rag** |
+   | Azure AI search index | select the index with prefix **rag** |
    | Display name | `knowledge-index` **(3)** |
    | Search type | select **Hybrid(vector + keyword) (4)** |
 
@@ -171,7 +171,7 @@ In this task, you will test your agent by asking policy-related questions and re
 
    ![](./media/ss-22.png)
    
-1. Explore and review these metrics, traces and evaluations which showcases a detailed overiew on the agent log.
+1. Explore and review these metrics, traces and evaluations which showcases a detailed overview on the agent log.
 
    ![](./media/ss-23.png)
 

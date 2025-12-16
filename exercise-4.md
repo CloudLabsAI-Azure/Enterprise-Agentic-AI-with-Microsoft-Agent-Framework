@@ -35,9 +35,9 @@ You'll perform the following task in this exercise
 
 ### Task 1: Deploy Agents to Azure AI Foundry Agent Service
 
-In this task, you’ll update the existing agent to be persistant agent and publish each agent to AI Foundry Agent Service as standalone models.
+In this task, you’ll update the existing agent to be persistent agent and publish each agent to AI Foundry Agent Service as standalone models.
 
-1.  Now, you need to update the codefiles to support the persistant agent system, which registers the agent in AI Foundry agent service.
+1.  Now, you need to update the codefiles to support the persistent agent system, which registers the agent in AI Foundry agent service.
 
 1. In the Visual Studio Code pane, from the left menu, select `.env` file to update the AI Foundry project keys. 
 
@@ -109,16 +109,21 @@ In this task, you’ll update the existing agent to be persistant agent and publ
                 "- Cross-border data transfers and adequacy decisions\n"
                 "- Breach notification requirements\n\n"
                 "When provided CONTEXT, prefer it as the primary source. "
-                "If the user asks to create a ticket (phrases like \"create a ticket\", \"submit a compliance request\", \"open a support ticket\"), output a structured block starting with:\n"
+                "If the user asks to create a ticket (phrases like \"create a ticket\", "
+                "\"submit a reimbursement request\", \"open a support ticket\"), you MUST:\n"
+                "1. Output ONLY a structured block in the exact format below.\n"
+                "2. Do NOT add explanations or conversational text.\n"
+                "3. Do NOT omit any relevant details provided by the user.\n\n"
+
+                "FORMAT:\n"
                 "CREATE_TICKET\n"
                 "Subject: <one-line subject>\n"
                 "Body: <detailed description>\n"
                 "Tags: tag1,tag2 (optional)\n"
                 "Email: user@example.com (optional)\n"
-                "Name: John Doe (optional)\n"
-                "Return only the CREATE_TICKET block when requesting a ticket; do not call any APIs yourself.\n\n"
-                "Always provide factual, well-researched answers with relevant legal citations. "
-                "Include practical implementation steps and potential risks. Use formal, professional tone."
+                "Name: John Doe (optional)\n\n"
+
+                "Return ONLY the CREATE_TICKET block. Do not call any APIs yourself."
                 )
             )
             
@@ -155,7 +160,7 @@ In this task, you’ll update the existing agent to be persistant agent and publ
 
     ![](./media/ss-39.png)
 
-1. Select `finance_agent.py` file, and replace the content with below code snippet to configure persistant finance agent.
+1. Select `finance_agent.py` file, and replace the content with below code snippet to configure persistent finance agent.
 
     ```python
     import os
@@ -203,14 +208,21 @@ In this task, you’ll update the existing agent to be persistant agent and publ
                 "meal allowances, equipment purchases, and financial procedures. Provide "
                 "specific amounts, policies, and actionable guidance.\n\n"
                 "When provided CONTEXT, prefer it as the primary source. "
-                "If the user asks to create a ticket (phrases like \"create a ticket\", \"submit a reimbursement request\", \"open a support ticket\"), output a structured block starting with:\n"
+                "If the user asks to create a ticket (phrases like \"create a ticket\", "
+                "\"submit a reimbursement request\", \"open a support ticket\"), you MUST:\n"
+                "1. Output ONLY a structured block in the exact format below.\n"
+                "2. Do NOT add explanations or conversational text.\n"
+                "3. Do NOT omit any relevant details provided by the user.\n\n"
+
+                "FORMAT:\n"
                 "CREATE_TICKET\n"
                 "Subject: <one-line subject>\n"
                 "Body: <detailed description>\n"
                 "Tags: tag1,tag2 (optional)\n"
                 "Email: user@example.com (optional)\n"
-                "Name: John Doe (optional)\n"
-                "Return only the CREATE_TICKET block when requesting a ticket; do not call any APIs yourself."
+                "Name: John Doe (optional)\n\n"
+
+                "Return ONLY the CREATE_TICKET block. Do not call any APIs yourself."
                 )
             )
             
@@ -247,7 +259,7 @@ In this task, you’ll update the existing agent to be persistant agent and publ
 
     ![](./media/ss-39.png)
 
-1. Now, select `hr_agent.py` file, replace the code with the following, which converts a stateless chat agent to a persistant agent.
+1. Now, select `hr_agent.py` file, replace the code with the following, which converts a stateless chat agent to a persistent agent.
 
     ```python
     import os
@@ -300,16 +312,21 @@ In this task, you’ll update the existing agent to be persistant agent and publ
                 "- Employee relations and conflict resolution\n"
                 "- Training and development programs\n\n"
                 "When provided CONTEXT, prefer it as the primary source. "
-                "If the user asks to create a ticket (phrases like \"create a ticket\", \"submit a leave request\", \"open a support ticket\"), output a structured block starting with:\n"
+                "If the user asks to create a ticket (phrases like \"create a ticket\", "
+                "\"submit a reimbursement request\", \"open a support ticket\"), you MUST:\n"
+                "1. Output ONLY a structured block in the exact format below.\n"
+                "2. Do NOT add explanations or conversational text.\n"
+                "3. Do NOT omit any relevant details provided by the user.\n\n"
+
+                "FORMAT:\n"
                 "CREATE_TICKET\n"
                 "Subject: <one-line subject>\n"
                 "Body: <detailed description>\n"
                 "Tags: tag1,tag2 (optional)\n"
                 "Email: user@example.com (optional)\n"
-                "Name: John Doe (optional)\n"
-                "Return only the CREATE_TICKET block when requesting a ticket; do not call any APIs yourself.\n\n"
-                "Provide specific, actionable guidance with policy references where applicable. "
-                "Be empathetic and professional in your responses."
+                "Name: John Doe (optional)\n\n"
+
+                "Return ONLY the CREATE_TICKET block. Do not call any APIs yourself."
                 )
             )
             
@@ -335,7 +352,7 @@ In this task, you’ll update the existing agent to be persistant agent and publ
 
     ![](./media/ss-39.png)
 
-1. Select `planner_agent.py` file, and replace the content with below code snippet to configure persistant orchestrator.
+1. Select `planner_agent.py` file, and replace the content with below code snippet to configure persistent orchestrator.
 
     ```python
     import os
@@ -966,7 +983,7 @@ In this task, you’ll update the existing agent to be persistant agent and publ
 
     ![](./media/ss-39.png)
 
-1. The agents are updated successfully with the persistance configurations. Now, run the agent to check the creation o agents in AI Foundry Portal.
+1. The agents are updated successfully with the persistance configurations. Now, run the agent to check the creation of agents in AI Foundry Portal.
 
 1. Select the **... (1)** option from the top menu to extend the menu. Select **Terminal (2)** and click on **New Terminal (3)**.
 
@@ -977,6 +994,8 @@ In this task, you’ll update the existing agent to be persistant agent and publ
    ```powershell
    az login
    ```
+   
+   >The login window may sometimes open in the background. Please minimize all other windows in the VM to locate and access it.
 
     ![](./media/fr-co-ex1-g29.png)
 
@@ -994,7 +1013,7 @@ In this task, you’ll update the existing agent to be persistant agent and publ
 
    - **Password:** <inject key="AzureAdUserPassword"></inject>
 
-        ![](./media/gs-3.png)
+        ![](./media/upimg-8.png)
 
 1. When prompted with the sign-in options, select **No, this app only** to continue without linking other desktop apps.
 
@@ -1015,15 +1034,15 @@ In this task, you’ll update the existing agent to be persistant agent and publ
 
 1. Open Azure Portal which is opened previously,navigate to your resource group, from the resource list, select **agent-<inject key="DeploymentID" enableCopy="false"/>** AI foundry resource.
 
-    ![](./media/ss-11.png)
+    ![](./media/upimg-1.png)
 
 1. In the next pane, click on **Go to Azure AI Foundry portal**. you will now be navigated to AI Foundry portal.
 
-    ![](./media/ss-12.png)
+    ![](./media/updimg-2.png)
 
-1. Once navigated to AI Foundry Portal, select **Agents (1)** from the left menu you will see all the agents got resgitered in the AI Foundry portal.
+1. Once navigated to AI Foundry Portal, select **Agents (1)** from the left menu you will see all the agents got registered in the AI Foundry portal.
 
-    ![](./media/ss-76.png)
+    ![](./media/upimg-9.png)
 
     >As part of using the Microsoft Agent Framework, the agents are designed to operate within either local or cloud-hosted environments, managed programmatically through the SDK rather than the Azure AI Foundry portal UI. Once deployed, these agents persist within the Foundry-managed environment and continue to run as services.
 

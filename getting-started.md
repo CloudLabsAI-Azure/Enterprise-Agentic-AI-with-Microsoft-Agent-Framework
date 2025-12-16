@@ -28,7 +28,7 @@ By the end of the lab, learners will have deployed their agents to the Azure AI 
 
 ![](./media/architecture.png)
 
-## Explaination of components
+## Explanation of components
 
 - **Microsoft Agent Framework SDK** — Define the Planner + HR/Finance/Compliance agents, instructions, and A2A routing.
 - **Azure AI Foundry** — Create/configure agents, connect knowledge, test in Playground, and deploy via **Agent Service**; observe runs with **Thread Logs** and **Application Insights**.
@@ -85,9 +85,7 @@ Feel free to start, stop, or restart your virtual machine as needed from the Res
 
    - Password: <inject key="AzureAdUserPassword"></inject>
 
-     ![](./media/gs-3.png)
-
-     >**Note:** If you see the Action Required dialog box, then select Ask Later option.
+     ![](./media/upimg-8.png)
      
 1. If you see the pop-up **Stay Signed in?**, click No.
 
@@ -96,12 +94,12 @@ Feel free to start, stop, or restart your virtual machine as needed from the Res
 
 ## Support Contact
 
-The CloudLabs support team is available 24/7, 365 days a year, via email and live chat to ensure seamless assistance at any time. We offer dedicated support channels tailored specifically for both learners and instructors, ensuring that all your needs are promptly and efficiently addressed.Learner Support Contacts:
+The CloudLabs support team is available 24/7, 365 days a year, via email and live chat to ensure seamless assistance at any time. We offer dedicated support channels tailored specifically for both learners and instructors, ensuring that all your needs are promptly and efficiently addressed. Learner Support Contacts:
 
 - Email Support: cloudlabs-support@spektrasystems.com
 - Live Chat Support: https://cloudlabs.ai/labs-support
 
-Now, click on the **Next** from lower right corner to move on next page.
+Now, click on the **Next** from lower right corner to move on to the next page.
 
 ## Happy Learning!!
 

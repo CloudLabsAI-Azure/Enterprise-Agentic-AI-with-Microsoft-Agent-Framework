@@ -71,7 +71,7 @@ By embedding Responsible AI practices, organizations can:
 
 In this task, you will configure Content Safety filters in Azure AI Foundry to enforce Responsible AI principles for your deployed agents. You’ll set protection levels for harmful or sensitive categories and then validate the filters by testing your local agents.
 
-1. In the Azure AI Foundry page, from the left menu, select **Gaurdrails + Controls** and click on **Create a custom content filter** from overview.
+1. In the Azure AI Foundry page, from the left menu, select **Guardrails + Controls** and click on **Create a custom content filter** from overview.
 
    ![](./media/ss-116.png)
 
@@ -85,7 +85,7 @@ In this task, you will configure Content Safety filters in Azure AI Foundry to e
 
    ![](./media/ss-118.png)
 
-1. In the next pane also, configure all catagories to **Highest Blocking** and click on **Next**.
+1. In the next pane also, configure all categories to **Highest Blocking** and click on **Next**.
 
    ![](./media/ss-119.png)
 

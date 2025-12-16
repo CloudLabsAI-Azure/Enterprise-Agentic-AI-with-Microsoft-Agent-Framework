@@ -509,7 +509,7 @@ In this task you will attach the AzureSearchTool to HR/Finance/Compliance agents
 
    ![](./media/ss-55.png)
 
-   > Check **Context retrived** parameter and review how the agent is getting the context from the grounded data.
+   > Check **Context retrieved** parameter and review how the agent is getting the context from the grounded data.
 
 1. Now, run the agent again on interactive mode by adding `--interactive` flag. This lets you input the question and get the response back. Provide the below prompt as question once it asks.
 
@@ -544,8 +544,9 @@ In this task, you will set up and configure Freshworks to enable tickets managem
    - **Last name:** `User` **(2)**
    - **Work email:** **<inject key="AzureAdUserEmail"></inject>** **(3)**
    - **Company name:** `Contoso` **(4)**
+   - **Organization size:** `1-10` **(5)**
 
-   ![](./media/fw2.png)
+   ![](./media/upimg-6.png)
 
 1. In the next pane, provide these details and click on **Next (4)**:
 
@@ -584,7 +585,7 @@ In this task, you will set up and configure Freshworks to enable tickets managem
 
    ![](./media/fw8.png)
 
-   >**Note:** If you are not able to find this option, please minimize the screensize using **CTRL + -**.
+   >**Note:** If you are not able to find this option, please minimize the screen size using **CTRL + -**.
 
 1. In the next pane, complete the **CAPTCHA**.
 
@@ -635,7 +636,7 @@ This tool will allow agents, especially Finance and HR to create real tickets wh
 
    ![](./media/ss-60.png)
 
-1. Now, select the file and add the following code snipet to configure the tool.
+1. Now, select the file and add the following code snippet to configure the tool.
 
    ```python
    import os
@@ -1258,17 +1259,24 @@ This tool will allow agents, especially Finance and HR to create real tickets wh
 1. add the following instructions below the existing instructions.
 
    ```python
-            "If the user asks to create a ticket (phrases like \"create a ticket\", \"submit a reimbursement request\", \"open a support ticket\"), output a structured block starting with:\n"
+            "If the user asks to create a ticket (phrases like \"create a ticket\", "
+            "\"submit a reimbursement request\", \"open a support ticket\"), you MUST:\n"
+            "1. Output ONLY a structured block in the exact format below.\n"
+            "2. Do NOT add explanations or conversational text.\n"
+            "3. Do NOT omit any relevant details provided by the user.\n\n"
+
+            "FORMAT:\n"
             "CREATE_TICKET\n"
             "Subject: <one-line subject>\n"
             "Body: <detailed description>\n"
             "Tags: tag1,tag2 (optional)\n"
             "Email: user@example.com (optional)\n"
-            "Name: John Doe (optional)\n"
-            "Return only the CREATE_TICKET block when requesting a ticket; do not call any APIs yourself."
+            "Name: John Doe (optional)\n\n"
+
+            "Return ONLY the CREATE_TICKET block. Do not call any APIs yourself."
    ```
 
-   ![](./media/ss-78.png)
+   ![](./media/upimg-14.png)
 
 1. Once done, please save the file.
 
@@ -1277,19 +1285,24 @@ This tool will allow agents, especially Finance and HR to create real tickets wh
 1. add the following instructions below the existing instructions.
 
    ```python
-            "If the user asks to create a ticket (phrases like \"create a ticket\", \"submit a leave request\", \"open a support ticket\"), output a structured block starting with:\n"
+            "If the user asks to create a ticket (phrases like \"create a ticket\", "
+            "\"submit a reimbursement request\", \"open a support ticket\"), you MUST:\n"
+            "1. Output ONLY a structured block in the exact format below.\n"
+            "2. Do NOT add explanations or conversational text.\n"
+            "3. Do NOT omit any relevant details provided by the user.\n\n"
+
+            "FORMAT:\n"
             "CREATE_TICKET\n"
             "Subject: <one-line subject>\n"
             "Body: <detailed description>\n"
             "Tags: tag1,tag2 (optional)\n"
-            "Email: john.doe@example.com (optional)\n"
-            "Name: John Doe (optional)\n"
-            "Return only the CREATE_TICKET block when requesting a ticket; do not call any APIs yourself.\n\n"
-            "Provide specific, actionable guidance with policy references where applicable. "
-            "Be empathetic and professional in your responses."
+            "Email: user@example.com (optional)\n"
+            "Name: John Doe (optional)\n\n"
+
+            "Return ONLY the CREATE_TICKET block. Do not call any APIs yourself."
    ```
 
-   ![](./media/ss-77.png)
+   ![](./media/upimg-15.png)
 
 1. Once done, please save the file.
 
@@ -1309,7 +1322,7 @@ This tool will allow agents, especially Finance and HR to create real tickets wh
 
    ![](./media/ss-64.png)
 
-   >**Note:** If you are not able to se ethe ticket, wait for few seconds or refresh the page to see it.
+   >**Note:** If you are not able to see the ticket, wait for few seconds or refresh the page to see it.
 
 1. Now, run the agent again on interactive mode by adding `--interactive` flag. This lets you input the question and get the response back. Provide the below prompt as question once it asks.
 
@@ -1325,7 +1338,7 @@ This tool will allow agents, especially Finance and HR to create real tickets wh
 
 1. Once after getting the response, in the next prompt add `q` to quit the agent or stop the agent.
 
-   ![](./media/ss-43.png)
+   ![](./media/upimg-7.png)
 
 1. You have successfully built a multi-agent system that retrieves contextual knowledge from Azure AI Search and seamlessly integrates with Freshdesk for enterprise ticket management.
 

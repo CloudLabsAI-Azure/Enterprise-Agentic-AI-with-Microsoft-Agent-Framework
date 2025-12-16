@@ -40,7 +40,7 @@ In this task, you will review the preconfigured folder structure to understand w
 
 1. Once in the open folder pane, navigate to `C:\enterprise-agent-code-files` and click on select folder.
 
-1. Once opened, a pop up window will be opened, click on **Yes, I trust authors** option.
+1. Once opened, a popup window will be opened, click on **Yes, I trust authors** option.
 
    ![](./media/ss-126.png)
 
@@ -328,7 +328,7 @@ Agent-to-Agent (A2A) is a core capability of the Microsoft Agent Framework that 
 
 In this task, you will implement routing logic using an Agent Workflow so the Planner can autonomously call HR or Compliance agents based on query intent. This establishes true multi-agent collaboration.
 
-1. From the list, select `main.py` under agent folder and add the following python code to configure A2A communiction flow agent. Add the following python code to configure agent routing logic.
+1. From the list, select `main.py` under agent folder and add the following python code to configure A2A communication flow agent. Add the following python code to configure agent routing logic.
 
    ```python
    import asyncio
@@ -536,7 +536,7 @@ In this task, you will implement routing logic using an Agent Workflow so the Pl
 
 In this task, you will run end-to-end test queries through the multi-agent system and observe agent collaboration using logs and telemetry in Azure AI Foundry.
 
-1. You have successfully configured the multi agent system with a planner agent and worker agents. Now, you'll test the working of this multi-agent system.
+1. You have successfully configured the multi-agent system with a planner agent and worker agents. Now, you'll test the working of this multi-agent system.
 
    >**Note:** Although the multi-agent system is now configured with LLM capabilities, it does not yet have MCP integration or access to external knowledge sources such as datasets or Azure AI Search indexes. At this stage, the agents will rely solely on their general model intelligence to answer questions.
 
@@ -568,7 +568,7 @@ In this task, you will run end-to-end test queries through the multi-agent syste
      Is employee data protected under GDPR?
      ```
 
-     ![](./media/ss-42.png)
+     ![](./media/upimg-5.png)
 
 1. Once after getting the response, in the next prompt add `q` to quit the agent or stop the agent.
 
