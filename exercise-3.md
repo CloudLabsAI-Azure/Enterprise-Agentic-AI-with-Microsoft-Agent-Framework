@@ -38,7 +38,7 @@ It allows agents to retrieve factual information, invoke APIs, and perform actio
 
 1. As you have created a multi-agent system before, in the visual studio code pane, select `.env` file, as you have to add AI Search keys for connection.
 
-1. In the `.env` file, add this part below the AI Foundry keys.
+1. In the `.env` file, add this part below the Microsoft Foundry keys.
 
    ```
    AZURE_SEARCH_ENDPOINT=https://ai-knowledge-<inject key="DeploymentID" enableCopy="false"/>.search.windows.net/

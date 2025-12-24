@@ -1,10 +1,10 @@
-# Exercise 4: Agent Deployment and Runtime Management in Azure AI Foundry
+# Exercise 4: Agent Deployment and Runtime Management in Microsoft Foundry
 
 ## Estimated Duration: 15 Minutes
 
 ## Overview
 
-In this exercise, you’ll deploy your multi-agent system (developed using the Microsoft Agent Framework SDK) into the Azure AI Foundry Agent Service.
+In this exercise, you’ll deploy your multi-agent system (developed using the Microsoft Agent Framework SDK) into the Microsoft Foundry Agent Service.
 You’ll publish the configured agent into a managed runtime environment.
 
 You have built a Chat Response Agent till now, which means:
@@ -17,7 +17,7 @@ You have built a Chat Response Agent till now, which means:
 
 - It is ideal for quick chat experiences or testing core logic before full deployment.
 
-Now, you will update this to be a Persistent Agent in Azure AI Foundry, which means:
+Now, you will update this to be a Persistent Agent in Microsoft Foundry, which means:
 
 - It runs as a managed, long-lived service within the Foundry environment.
 
@@ -31,15 +31,15 @@ Now, you will update this to be a Persistent Agent in Azure AI Foundry, which me
 
 You'll perform the following task in this exercise
 
-- Task 1: Deploy Agents to Azure AI Foundry Agent Service
+- Task 1: Deploy Agents to Microsoft Foundry Agent Service
 
-### Task 1: Deploy Agents to Azure AI Foundry Agent Service
+### Task 1: Deploy Agents to Microsoft Foundry Agent Service
 
-In this task, you’ll update the existing agent to be persistent agent and publish each agent to AI Foundry Agent Service as standalone models.
+In this task, you’ll update the existing agent to be persistent agent and publish each agent to Microsoft Foundry Agent Service as standalone models.
 
-1.  Now, you need to update the codefiles to support the persistent agent system, which registers the agent in AI Foundry agent service.
+1.  Now, you need to update the codefiles to support the persistent agent system, which registers the agent in Microsoft Foundry agent service.
 
-1. In the Visual Studio Code pane, from the left menu, select `.env` file to update the AI Foundry project keys. 
+1. In the Visual Studio Code pane, from the left menu, select `.env` file to update the Microsoft Foundry project keys. 
 
 1. Add the following variables to the file.
 
@@ -142,7 +142,7 @@ In this task, you’ll update the existing agent to be persistent agent and publ
     ![](./media/ss-70.png)
 
     >Integration with Azure AI Project Client:
-    >- The AIProjectClient connects directly to your Azure AI Foundry project endpoint, allowing the script to list, retrieve, or create agents that are hosted persistently within Foundry.
+    >- The AIProjectClient connects directly to your Microsoft Foundry project endpoint, allowing the script to list, retrieve, or create agents that are hosted persistently within Foundry.
 
     >Agent Reuse Logic:
     >- Before creating a new agent, the code first checks for an existing agent named "Enterprise-ComplianceAgent".
@@ -154,7 +154,7 @@ In this task, you’ll update the existing agent to be persistent agent and publ
 
     >ChatAgent Wrapping:
     >- Once created or retrieved, the persistent Foundry agent is wrapped in a ChatAgent instance using AzureAIAgentClient.
-    >- This allows programmatic communication with the hosted agent while maintaining its state, policies, and monitoring features inside Azure AI Foundry.
+    >- This allows programmatic communication with the hosted agent while maintaining its state, policies, and monitoring features inside Microsoft Foundry.
 
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
@@ -240,8 +240,8 @@ In this task, you’ll update the existing agent to be persistent agent and publ
 
     ![](./media/ss-71.png)
 
-    >Persistent Agent Management via Azure AI Foundry:
-    >- The AIProjectClient connects to your Azure AI Foundry project, enabling the script to list, find, or create persistent agents that live within the Foundry environment instead of running locally.
+    >Persistent Agent Management via Microsoft Foundry:
+    >- The AIProjectClient connects to your Microsoft Foundry project, enabling the script to list, find, or create persistent agents that live within the Foundry environment instead of running locally.
 
     >Reusability of Existing Agents:
     >- Before creating a new agent, the function checks if an existing "Enterprise-FinanceAgent" already exists.
@@ -344,7 +344,7 @@ In this task, you’ll update the existing agent to be persistent agent and publ
 
     ![](./media/ss-72.png)
 
-    >This update converts the HR Agent into a persistent, cloud-hosted agent within Azure AI Foundry.
+    >This update converts the HR Agent into a persistent, cloud-hosted agent within Microsoft Foundry.
     >It connects to the Foundry project using AIProjectClient, reuses the existing "Enterprise-HRAgent" if deployed, or creates a new one with specialized HR domain instructions.
     >Once deployed, it’s wrapped in a ChatAgent linked via AzureAIAgentClient, enabling stateful, reusable, and centrally managed HR automation within the Foundry environment.
 
@@ -878,14 +878,14 @@ In this task, you’ll update the existing agent to be persistent agent and publ
 
     async def main():
         """Main application entry point with enhanced features and tool integration."""
-        print("🚀 Initializing Enterprise Agent System with Persistent Azure AI Foundry Agents...")
+        print("🚀 Initializing Enterprise Agent System with Persistent Microsoft Foundry Agents...")
         
         try:
             # Load environment and build persistent agents
             load_env()
-            logging.info("Building persistent Azure AI Foundry agent network...")
+            logging.info("Building persistent Microsoft Foundry agent network...")
             
-            # Build core persistent agents using Azure AI Foundry
+            # Build core persistent agents using Microsoft Foundry
             planner_agent_client = await build_planner_agent()
             hr_agent_client = await build_hr_agent()
             compliance_agent_client = await build_compliance_agent()
@@ -935,7 +935,7 @@ In this task, you’ll update the existing agent to be persistent agent and publ
                     logging.warning(f"⚠️ Freshdesk tool initialization failed: {e}")
                     # System will work without Freshdesk, just won't create tickets
                 
-                logging.info("✅ All Azure AI Foundry agents and tools initialized")
+                logging.info("✅ All Microsoft Foundry agents and tools initialized")
                 
                 # Check if running interactively or in batch mode
                 import sys
@@ -945,11 +945,11 @@ In this task, you’ll update the existing agent to be persistent agent and publ
                     await run_batch_tests(agents)
                 
         except Exception as e:
-            logging.error(f"Azure AI Foundry agent system initialization failed: {e}")
-            print(f"❌ Failed to start Azure AI Foundry system: {e}")
+            logging.error(f"Microsoft Foundry agent system initialization failed: {e}")
+            print(f"❌ Failed to start Microsoft Foundry system: {e}")
             
             # Try to run with minimal configuration
-            logging.info("Attempting to run with minimal Azure AI Foundry configuration...")
+            logging.info("Attempting to run with minimal Microsoft Foundry configuration...")
             try:
                 planner_agent_client = await build_planner_agent()
                 hr_agent_client = await build_hr_agent()
@@ -971,7 +971,7 @@ In this task, you’ll update the existing agent to be persistent agent and publ
                     }
                     await run_batch_tests(minimal_agents)
             except Exception as minimal_error:
-                print(f"❌ Even minimal Azure AI Foundry configuration failed: {minimal_error}")
+                print(f"❌ Even minimal Microsoft Foundry configuration failed: {minimal_error}")
 
     if __name__ == "__main__":
         asyncio.run(main())
@@ -983,7 +983,7 @@ In this task, you’ll update the existing agent to be persistent agent and publ
 
     ![](./media/ss-39.png)
 
-1. The agents are updated successfully with the persistance configurations. Now, run the agent to check the creation of agents in AI Foundry Portal.
+1. The agents are updated successfully with the persistance configurations. Now, run the agent to check the creation of agents in Microsoft Foundry Portal.
 
 1. Select the **... (1)** option from the top menu to extend the menu. Select **Terminal (2)** and click on **New Terminal (3)**.
 
@@ -1032,25 +1032,25 @@ In this task, you’ll update the existing agent to be persistent agent and publ
 
     ![](./media/ss-75.png)
 
-1. Open Azure Portal which is opened previously,navigate to your resource group, from the resource list, select **agent-<inject key="DeploymentID" enableCopy="false"/>** AI foundry resource.
+1. Open Azure Portal which is opened previously,navigate to your resource group, from the resource list, select **agent-<inject key="DeploymentID" enableCopy="false"/>** Microsoft Foundry resource.
 
     ![](./media/upimg-1.png)
 
-1. In the next pane, click on **Go to Azure AI Foundry portal**. you will now be navigated to AI Foundry portal.
+1. In the next pane, click on **Go to Microsoft Foundry portal**. you will now be navigated to Microsoft Foundry portal.
 
     ![](./media/updimg-2.png)
 
-1. Once navigated to AI Foundry Portal, select **Agents (1)** from the left menu you will see all the agents got registered in the AI Foundry portal.
+1. Once navigated to Microsoft Foundry Portal, select **Agents (1)** from the left menu you will see all the agents got registered in the Microsoft Foundry portal.
 
     ![](./media/upimg-9.png)
 
-    >As part of using the Microsoft Agent Framework, the agents are designed to operate within either local or cloud-hosted environments, managed programmatically through the SDK rather than the Azure AI Foundry portal UI. Once deployed, these agents persist within the Foundry-managed environment and continue to run as services.
+    >As part of using the Microsoft Agent Framework, the agents are designed to operate within either local or cloud-hosted environments, managed programmatically through the SDK rather than the Microsoft Foundry portal UI. Once deployed, these agents persist within the Foundry-managed environment and continue to run as services.
 
     >From the next exercises onward, you will continue working locally to configure observability, monitoring, and tracing features — enabling you to visualize, analyze, and govern the behavior of these agents as they operate in the cloud.
 
 ## Summary
 
-In this exercise, you successfully deployed your locally built multi-agent system into the Azure AI Foundry Agent Service.
+In this exercise, you successfully deployed your locally built multi-agent system into the Microsoft Foundry Agent Service.
 
 
 

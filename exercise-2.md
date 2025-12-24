@@ -10,7 +10,7 @@ The Microsoft Agent Framework SDK is the new official development kit for buildi
 
 - Unified Agent Architecture – Replaces AutoGen, Semantic Kernel, and fragmented orchestrators
 
-- Built-in Support for Azure AI Foundry – Deploy agents directly into Foundry’s Agent Service
+- Built-in Support for Microsoft Foundry – Deploy agents directly into Foundry’s Agent Service
 
 - Tooling via MCP (Model Context Protocol) – Standardized integration with data, APIs, systems
 
@@ -534,7 +534,7 @@ In this task, you will implement routing logic using an Agent Workflow so the Pl
 
 ### Task 5: Test Multi-Agent Conversation & Inspect Logs
 
-In this task, you will run end-to-end test queries through the multi-agent system and observe agent collaboration using logs and telemetry in Azure AI Foundry.
+In this task, you will run end-to-end test queries through the multi-agent system and observe agent collaboration using logs and telemetry in Microsoft Foundry.
 
 1. You have successfully configured the multi-agent system with a planner agent and worker agents. Now, you'll test the working of this multi-agent system.
 

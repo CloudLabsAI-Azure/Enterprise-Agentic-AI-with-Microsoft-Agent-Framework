@@ -1,17 +1,17 @@
-# Exercise 1: Advanced Orchestration with Azure AI Foundry and Microsoft Agent Framework
+# Exercise 1: Advanced Orchestration with Microsoft Foundry and Microsoft Agent Framework
 
 ## Estimated Duration: 60 Minutes
 
 ## Overview
 
-In this exercise, you’ll create your first AI Agent using the Azure AI Foundry portal. You’ll begin by uploading enterprise policy documents and ingesting them into Azure AI Search to prepare a knowledge base. Then, you’ll configure the agent using the Microsoft Agent Framework to enable retrieval-augmented generation (RAG). Finally, you’ll test the agent’s responses and analyze execution logs to observe how it retrieves and processes information.
+In this exercise, you’ll create your first AI Agent using the Microsoft Foundry portal. You’ll begin by uploading enterprise policy documents and ingesting them into Azure AI Search to prepare a knowledge base. Then, you’ll configure the agent using the Microsoft Agent Framework to enable retrieval-augmented generation (RAG). Finally, you’ll test the agent’s responses and analyze execution logs to observe how it retrieves and processes information.
 
 ## Exercise Objectives
 
 You'll perform the following task in this exercise
 
 - Task 1: Prepare Knowledge index
-- Task 2: Create an AI Agent in Azure AI Foundry
+- Task 2: Create an AI Agent in Microsoft Foundry
 - Task 3: Connect Azure AI Search for RAG
 - Task 4: Test and Observe Agent Execution Logs
 
@@ -65,8 +65,8 @@ In this task, ingest corporate policy documents into Azure Blob Storage and inde
 
    | Parameter | Configuration |
    |-----------|---------------|
-   | Kind      | select **Azure AI Foundry (preview) (1)** |
-   | Azure AI Foundry/Hub project | select **agentic-ai-project (2)** from drop down |
+   | Kind      | select **Microsoft Foundry (preview) (1)** |
+   | Microsoft Foundry/Hub project | select **agentic-ai-project (2)** from drop down |
    | Model deployment | select **text-embedding-ada-002 (3)** model |
    | Authentic type | select **API Key (4)** option |
    | Disclaimer Check box | **Check (5)** |
@@ -84,19 +84,19 @@ In this task, ingest corporate policy documents into Azure Blob Storage and inde
 1. You’ve successfully ingested the dataset into Azure AI Search and created a searchable index.
 In the next task, you’ll create an AI agent and connect this index as its knowledge source.
 
-### Task 2: Create an AI Agent in Azure AI Foundry
+### Task 2: Create an AI Agent in Microsoft Foundry
 
-In this task, you will create a new AI Agent in Azure AI Foundry and configure its core purpose, instructions, and model using the Microsoft Agent Framework interface.
+In this task, you will create a new AI Agent in Microsoft Foundry and configure its core purpose, instructions, and model using the Microsoft Agent Framework interface.
 
-1. Navigate back to your resource group, from the resource list, select **agent-<inject key="DeploymentID" enableCopy="false"/>** AI foundry resource.
+1. Navigate back to your resource group, from the resource list, select **agent-<inject key="DeploymentID" enableCopy="false"/>** Microsoft Foundry resource.
 
    ![](./media/upimg-1.png)
 
-1. In the next pane, click on **Go to Azure AI Foundry portal**. you will now be navigated to AI Foundry portal, where you will be creating your first agent.
+1. In the next pane, click on **Go to Microsoft Foundry portal**. you will now be navigated to Microsoft Foundry portal, where you will be creating your first agent.
 
    ![](./media/updimg-2.png)
 
-1. Once navigated to AI Foundry Portal, select **Agents (1)** from the left menu.
+1. Once navigated to Microsoft Foundry Portal, select **Agents (1)** from the left menu.
 
    ![](./media/upimg-4.png)
 
@@ -109,7 +109,7 @@ In this task, you will create a new AI Agent in Azure AI Foundry and configure i
 
    ![](./media/ss-14.png)
 
-1. You’ve successfully created an agent in Azure AI Foundry. Next, it’s time to enrich it with knowledge by connecting your indexed data in the upcoming task.
+1. You’ve successfully created an agent in Microsoft Foundry. Next, it’s time to enrich it with knowledge by connecting your indexed data in the upcoming task.
 
 ### Task 3: Connect Azure AI Search for RAG
 
@@ -150,7 +150,7 @@ In this task, you will test your agent by asking policy-related questions and re
 
 1. Before testing the agent, connect Application Insights to enable detailed logs and trace visibility.
 
-1. In Azure AI Foundry portal, select **Monitoring (1)** from left menu, select **agent-insights-<inject key="DeploymentID" enableCopy="false"/> (2)** and click on **Connect (3)**
+1. In Microsoft Foundry portal, select **Monitoring (1)** from left menu, select **agent-insights-<inject key="DeploymentID" enableCopy="false"/> (2)** and click on **Connect (3)**
 
    ![](./media/ss-25.png)
 
@@ -192,7 +192,7 @@ In this task, you will test your agent by asking policy-related questions and re
 
 ## Summary
 
-In this exercise, you successfully created your first AI Agent in Azure AI Foundry and connected it to an indexed knowledge base. You uploaded documents, ingested them into Azure AI Search, and enabled RAG through Microsoft Agent Framework integration. By testing the agent and reviewing execution logs, you gained firsthand experience in how agents retrieve grounded information and generate enterprise-ready responses.
+In this exercise, you successfully created your first AI Agent in Microsoft Foundry and connected it to an indexed knowledge base. You uploaded documents, ingested them into Azure AI Search, and enabled RAG through Microsoft Agent Framework integration. By testing the agent and reviewing execution logs, you gained firsthand experience in how agents retrieve grounded information and generate enterprise-ready responses.
 
 
 

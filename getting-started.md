@@ -4,9 +4,9 @@
 
 ## Overview
 
-In this lab, participants will learn to design, build, and deploy enterprise-grade AI agents using the Microsoft Agent Framework and Azure AI Foundry. Through a series of hands-on exercises, they will create a multi-agent system that can intelligently route queries across HR, Finance, and Compliance domains, retrieve contextual data from Azure AI Search, and integrate with enterprise tools like Freshdesk for ticket management.
+In this lab, participants will learn to design, build, and deploy enterprise-grade AI agents using the Microsoft Agent Framework and Microsoft Foundry. Through a series of hands-on exercises, they will create a multi-agent system that can intelligently route queries across HR, Finance, and Compliance domains, retrieve contextual data from Azure AI Search, and integrate with enterprise tools like Freshdesk for ticket management.
 
-By the end of the lab, learners will have deployed their agents to the Azure AI Foundry Agent Service, gaining experience with Model Context Protocol (MCP) integration, multi-agent orchestration, tool calling, and runtime monitoring, building a complete, production-ready agentic AI solution aligned with Microsoft’s modern enterprise architecture.
+By the end of the lab, learners will have deployed their agents to the Microsoft Foundry Agent Service, gaining experience with Model Context Protocol (MCP) integration, multi-agent orchestration, tool calling, and runtime monitoring, building a complete, production-ready agentic AI solution aligned with Microsoft’s modern enterprise architecture.
 
 ## Objectives
 
@@ -14,24 +14,24 @@ By the end of the lab, learners will have deployed their agents to the Azure AI 
 - Author single- and multi-agent workflows with the Microsoft Agent Framework SDK.
 - Implement A2A (Agent-to-Agent) routing: Planner → HR/Finance/Compliance.
 - Integrate an external system (Freshdesk) to create real tickets from agent actions.
-- Deploy to Azure AI Foundry Agent Service and analyze Thread Logs & Monitoring.
+- Deploy to Microsoft Foundry Agent Service and analyze Thread Logs & Monitoring.
 - Apply runtime policies (timeouts, rate limits, token budgets) for safe, cost-controlled ops.
 
 ## Pre-requisites
 
 - Basic understanding of Agentic AI concepts (agents, tools, A2A, RAG).
-- Working knowledge of the Azure Portal and Azure AI Foundry.
+- Working knowledge of the Azure Portal and Microsoft Foundry.
 - Familiarity with Python and Visual Studio Code (integrated terminal).
 - Basic Git usage (clone, open folder) and editing `.env` files.
 
 ## Architecture
 
-![](./media/architecture.png)
+![](./media/Microsoft%20Foundry%20project.png)
 
 ## Explanation of components
 
 - **Microsoft Agent Framework SDK** — Define the Planner + HR/Finance/Compliance agents, instructions, and A2A routing.
-- **Azure AI Foundry** — Create/configure agents, connect knowledge, test in Playground, and deploy via **Agent Service**; observe runs with **Thread Logs** and **Application Insights**.
+- **Microsoft Foundry** — Create/configure agents, connect knowledge, test in Playground, and deploy via **Agent Service**; observe runs with **Thread Logs** and **Application Insights**.
 - **Azure AI Search (RAG)** — Index enterprise docs and return grounded snippets that agents use for accurate answers.
 - **Azure Storage (Blob)** — Holds source datasets that are ingested into Azure AI Search.
 - **MCP-style Tools** — `AzureSearchTool` (queries the index for context) and `FreshdeskTool` (creates support tickets via Freshdesk).

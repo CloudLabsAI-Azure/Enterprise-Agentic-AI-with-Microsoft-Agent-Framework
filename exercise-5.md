@@ -17,7 +17,7 @@ You'll perform the following task in this exercise
 
 - Task 1: Enable Observability of Agent with OpenTelemetry
 - Task 2: Visualize Agent Metrics
-- Task 3: Monitor Agent specific metrics in AI Foundry Portal
+- Task 3: Monitor Agent specific metrics in Microsoft Foundry Portal
 
 ### Task 1: Enable Observability of Agent with OpenTelemetry
 
@@ -256,17 +256,17 @@ In this task, you’ll use Azure Application Insights to visualize agent telemet
    - How often do requests become support tickets?
    - Is the knowledge base helping users?
 
-### Task 3: Monitor Agent specific metrics in AI Foundry Portal
+### Task 3: Monitor Agent specific metrics in Microsoft Foundry Portal
 
-In this task, you’ll use Azure Application Insights to visualize agent telemetry data. You’ll explore custom agent specific metrics from Azure AI Foundry Portal.
+In this task, you’ll use Azure Application Insights to visualize agent telemetry data. You’ll explore custom agent specific metrics from Microsoft Foundry Portal.
 
-1. As you have already connected application insights to Azure AI Foundry portal, you can navigate back to your AI Foundry portal and visualize the working of your agent.
+1. As you have already connected application insights to Microsoft Foundry portal, you can navigate back to your Microsoft Foundry portal and visualize the working of your agent.
 
-1. Navigate back to your resource group, from the resource list, select **agent-<inject key="DeploymentID" enableCopy="false"/>** AI foundry resource.
+1. Navigate back to your resource group, from the resource list, select **agent-<inject key="DeploymentID" enableCopy="false"/>** Microsoft Foundry resource.
 
    ![](./media/upimg-1.png)
 
-1. In the next pane, click on **Go to Azure AI Foundry portal**. you will now be navigated to AI Foundry portal, where you will be creating your first agent.
+1. In the next pane, click on **Go to Microsoft Foundry portal**. you will now be navigated to Microsoft Foundry portal, where you will be creating your first agent.
 
    ![](./media/updimg-2.png)
 
