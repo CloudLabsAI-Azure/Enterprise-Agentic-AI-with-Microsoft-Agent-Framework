@@ -65,7 +65,7 @@ In this task, ingest corporate policy documents into Azure Blob Storage and inde
 
    | Parameter | Configuration |
    |-----------|---------------|
-   | Kind      | select **Microsoft Foundry (preview) (1)** |
+   | Kind      | select **Azure AI Foundry (preview) (1)** |
    | Microsoft Foundry/Hub project | select **agentic-ai-project (2)** from drop down |
    | Model deployment | select **text-embedding-ada-002 (3)** model |
    | Authentic type | select **API Key (4)** option |
@@ -193,6 +193,7 @@ In this task, you will test your agent by asking policy-related questions and re
 ## Summary
 
 In this exercise, you successfully created your first AI Agent in Microsoft Foundry and connected it to an indexed knowledge base. You uploaded documents, ingested them into Azure AI Search, and enabled RAG through Microsoft Agent Framework integration. By testing the agent and reviewing execution logs, you gained firsthand experience in how agents retrieve grounded information and generate enterprise-ready responses.
+
 
 
 
