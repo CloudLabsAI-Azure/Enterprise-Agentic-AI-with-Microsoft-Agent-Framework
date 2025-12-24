@@ -192,7 +192,7 @@ It allows agents to retrieve factual information, invoke APIs, and perform actio
 
    ![](./media/ss-39.png)
 
-1. Select the **... (1)** option from the top menu to extend the menu. Select **Terminal (2)** and click on **New Terminal (3)**.
+1. Please use the existing terminal. If the previous terminal window is closed, click Terminal (or the … menu, depending on your screen size), and then select New Terminal to open a new terminal window.
 
    ![](./media/ss-40.png)
 
@@ -497,7 +497,7 @@ In this task you will attach the AzureSearchTool to HR/Finance/Compliance agents
 
    ![](./media/ss-39.png)
 
-1. Select the **... (1)** option from the top menu to extend the menu. Select **Terminal (2)** and click on **New Terminal (3)**.
+1. Please use the existing terminal. If the previous terminal window is closed, click Terminal (or the … menu, depending on your screen size), and then select New Terminal to open a new terminal window.
 
    ![](./media/ss-40.png)
 

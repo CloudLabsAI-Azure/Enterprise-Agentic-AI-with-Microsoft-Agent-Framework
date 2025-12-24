@@ -985,7 +985,7 @@ In this task, you’ll update the existing agent to be persistent agent and publ
 
 1. The agents are updated successfully with the persistance configurations. Now, run the agent to check the creation of agents in Microsoft Foundry Portal.
 
-1. Select the **... (1)** option from the top menu to extend the menu. Select **Terminal (2)** and click on **New Terminal (3)**.
+1. Please use the existing terminal. If the previous terminal window is closed, click Terminal (or the … menu, depending on your screen size), and then select New Terminal to open a new terminal window.
 
     ![](./media/ss-40.png)
 

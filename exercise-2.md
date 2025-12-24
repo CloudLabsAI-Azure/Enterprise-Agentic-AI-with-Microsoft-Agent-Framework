@@ -540,7 +540,7 @@ In this task, you will run end-to-end test queries through the multi-agent syste
 
    >**Note:** Although the multi-agent system is now configured with LLM capabilities, it does not yet have MCP integration or access to external knowledge sources such as datasets or Azure AI Search indexes. At this stage, the agents will rely solely on their general model intelligence to answer questions.
 
-1. Select the **... (1)** option from the top menu to extend the menu. Select **Terminal (2)** and click on **New Terminal (3)**.
+1. Select the **... (1)** option from the top menu to extend the menu. Select **Terminal (2)** and click on **New Terminal (3)**. If you are using a larger screen or have the window maximized, the Terminal option may be visible directly. In that case, click **Terminal**, then select **New Terminal** to open it.
 
    ![](./media/ss-40.png)
 

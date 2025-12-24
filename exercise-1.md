@@ -92,7 +92,7 @@ In this task, you will create a new AI Agent in Microsoft Foundry and configure 
 
    ![](./media/upimg-1.png)
 
-1. In the next pane, click on **Go to Microsoft Foundry portal**. you will now be navigated to Microsoft Foundry portal, where you will be creating your first agent.
+1. In the next pane, click on **Go to Foundry portal**. you will now be navigated to Microsoft Foundry portal, where you will be creating your first agent.
 
    ![](./media/updimg-2.png)
 
