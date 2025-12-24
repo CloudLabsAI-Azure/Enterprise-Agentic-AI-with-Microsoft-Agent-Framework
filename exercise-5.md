@@ -1,4 +1,4 @@
-# Exercise 5: AgentOps – Observability and Management
+# Exercise 5: AgentOps - Observability and Management
 
 ## Estimated Duration: 60 Minutes
 
@@ -282,4 +282,5 @@ In this task, you’ll use Azure Application Insights to visualize agent telemet
 
 
 In this exercise, you configured observability and monitoring for your enterprise agents. Using OpenTelemetry tracing, you captured detailed execution data for every workflow step, and by integrating with Azure Application Insights, you created dashboards to visualize performance metrics and agent health.
+
 
