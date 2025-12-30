@@ -57,6 +57,52 @@ In this task, you’ll update the existing agent to be persistent agent and publ
 
 1. Now, you have to update the agents one by one. Select `compliance_agent.py` from explorer menu under **agents**. Replace the content by adding the below code snippet.
 
+    > **Shift to Persistent Agent Architecture (Key Change):**  
+    > - This implementation moves from a stateless, per-run Compliance agent to a **persistent agent model** managed by Azure AI Projects.  
+    > - Instead of creating a new agent every time, the system now **reuses an existing Compliance agent** if it already exists, enabling continuity and better lifecycle management.
+
+    ---
+
+    > **Azure AI Projects Integration (New Capability):**  
+    > - The Compliance agent is now created and managed using `AIProjectClient`, which allows agents to live as first-class, long-running resources within an Azure AI Project.  
+    > - Authentication is handled via `AzureCliCredential`, aligning with enterprise identity and developer workflows.
+
+    ---
+
+    > **Agent Discovery and Reuse Logic (New Addition):**  
+    > - Before creating a new agent, the code attempts to **list existing agents** and match by a predefined name (`Enterprise-ComplianceAgent`).  
+    > - If found, the existing agent is reused, preventing duplication and ensuring consistent behavior across sessions.
+
+    ---
+
+    > **Persistent Agent Creation with Explicit Instructions:**  
+    > - If no existing agent is found, a new persistent Compliance agent is created with a detailed instruction set covering regulatory, legal, and security domains.  
+    > - This ensures the agent’s expertise and behavior remain consistent across executions.
+
+    ---
+
+    > **Structured CREATE_TICKET Contract Embedded in Agent Instructions:**  
+    > - The agent is explicitly instructed to emit a **strict `CREATE_TICKET` block** when users request ticket creation.  
+    > - This formalizes the contract between the agent and the orchestrator, enabling reliable downstream automation without exposing tools directly to the agent.
+
+    ---
+
+    > **Separation of Reasoning and Action (Architectural Improvement):**  
+    > - The agent is prohibited from calling APIs or performing actions directly.  
+    > - Instead, it declares intent via a structured output, allowing the orchestrator to safely validate and execute actions (such as Freshdesk ticket creation).
+
+    ---
+
+    > **ChatAgent Wrapper for Uniform Interaction:**  
+    > - The persistent Azure AI agent is wrapped in a `ChatAgent`, providing a consistent interface with the rest of the agent framework.  
+    > - This allows persistent and non-persistent agents to coexist seamlessly within the same multi-agent system.
+
+    ---
+
+    > **Foundation for Enterprise-Scale Agent Lifecycle Management:**  
+    > - These changes introduce agent persistence, reuse, and governed action signaling—key requirements for production-grade AgentOps.  
+    > - The system now supports long-lived agents with controlled behaviors, auditability, and extensibility.
+
     ```python
     import os
     import asyncio
@@ -141,26 +187,57 @@ In this task, you’ll update the existing agent to be persistent agent and publ
 
     ![](./media/ss-70.png)
 
-    >Integration with Azure AI Project Client:
-    >- The AIProjectClient connects directly to your Microsoft Foundry project endpoint, allowing the script to list, retrieve, or create agents that are hosted persistently within Foundry.
-
-    >Agent Reuse Logic:
-    >- Before creating a new agent, the code first checks for an existing agent named "Enterprise-ComplianceAgent".
-    >- If found, it reuses that existing agent by linking it via its unique Foundry-managed agent_id.
-
-    >Persistent Agent Creation:
-    >- If the agent doesn’t exist, it’s created via project_client.agents.create_agent().
-    >- The agent is registered in Foundry with its model, name, and detailed instruction set, making it permanently accessible across sessions.
-
-    >ChatAgent Wrapping:
-    >- Once created or retrieved, the persistent Foundry agent is wrapped in a ChatAgent instance using AzureAIAgentClient.
-    >- This allows programmatic communication with the hosted agent while maintaining its state, policies, and monitoring features inside Microsoft Foundry.
-
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
     ![](./media/ss-39.png)
 
 1. Select `finance_agent.py` file, and replace the content with below code snippet to configure persistent finance agent.
+
+    > **Transition to Persistent Finance Agent (Key Change):**  
+    > - This implementation replaces the earlier stateless Finance agent with a **persistent agent managed by Azure AI Projects**.  
+    > - The Finance agent now exists as a long-lived resource that can be reused across executions, rather than being recreated on every run.
+
+    ---
+
+    > **Azure AI Projects–Based Agent Management:**  
+    > - The Finance agent is created and discovered using `AIProjectClient`, making it a first-class entity within an Azure AI Project.  
+    > - Authentication is handled via `AzureCliCredential`, aligning agent access with Azure identity and enterprise security practices.
+
+    ---
+
+    > **Agent Discovery and Reuse Logic (New Addition):**  
+    > - Before creating a new agent, the system attempts to **list existing agents** and match them by name (`Enterprise-FinanceAgent`).  
+    > - If an agent already exists, it is reused, ensuring consistent behavior, reduced provisioning overhead, and stable agent identity.
+
+    ---
+
+    > **Persistent Agent Creation with Finance-Specific Instructions:**  
+    > - When no existing agent is found, a new persistent Finance agent is created with detailed, domain-specific instructions.  
+    > - The instructions clearly scope the agent to finance and reimbursement topics, ensuring focused and accurate financial guidance.
+
+    ---
+
+    > **Structured CREATE_TICKET Output Contract (New Capability):**  
+    > - The Finance agent is explicitly instructed to emit a **strict `CREATE_TICKET` block** when users request ticket creation.  
+    > - This enables a clean contract between agent reasoning and downstream automation, allowing the orchestrator to safely trigger ticket creation workflows.
+
+    ---
+
+    > **Separation of Decision and Execution (Architectural Improvement):**  
+    > - The agent is prohibited from calling APIs or performing actions directly.  
+    > - Instead, it declares intent via structured output, keeping business logic centralized in the orchestrator and maintaining governance and auditability.
+
+    ---
+
+    > **ChatAgent Wrapper for Framework Consistency:**  
+    > - The persistent Azure AI Finance agent is wrapped in a `ChatAgent`, providing a uniform interface with other agents in the system.  
+    > - This allows persistent and non-persistent agents to coexist seamlessly within the same multi-agent architecture.
+
+    ---
+
+    > **Foundation for Enterprise-Scale Finance Automation:**  
+    > - These changes prepare the Finance agent for real-world enterprise use cases, enabling persistent memory, governed actions, and scalable AgentOps.  
+    > - The agent can now reliably support both advisory responses and automated finance request workflows.
 
     ```python
     import os
@@ -240,26 +317,57 @@ In this task, you’ll update the existing agent to be persistent agent and publ
 
     ![](./media/ss-71.png)
 
-    >Persistent Agent Management via Microsoft Foundry:
-    >- The AIProjectClient connects to your Microsoft Foundry project, enabling the script to list, find, or create persistent agents that live within the Foundry environment instead of running locally.
-
-    >Reusability of Existing Agents:
-    >- Before creating a new agent, the function checks if an existing "Enterprise-FinanceAgent" already exists.
-    >- If found, it reuses that deployed agent by initializing a ChatAgent through its Foundry-managed ID, avoiding duplicate deployments.
-
-    >Automatic Agent Creation (If Missing):
-    >- If the agent isn’t found, it creates a new persistent one in Foundry using project_client.agents.create_agent(),
-    >- registering it with a model deployment name, unique agent name, and domain-specific instructions focused on finance and reimbursements.
-
-    >Integration with AzureAIAgentClient for Communication:
-    >- The created or reused agent is then wrapped in a ChatAgent using AzureAIAgentClient,
-    >- which handles authentication, model routing, and persistent communication with the deployed Foundry agent.
-
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
     ![](./media/ss-39.png)
 
 1. Now, select `hr_agent.py` file, replace the code with the following, which converts a stateless chat agent to a persistent agent.
+
+    > **Transition to a Persistent HR Agent (Key Change):**  
+    > - This implementation upgrades the HR agent from a stateless, per-run instance to a **persistent agent managed by Azure AI Projects**.  
+    > - The HR agent now exists as a long-lived resource that can be reused across executions, ensuring consistency in behavior and reduced setup overhead.
+
+    ---
+
+    > **Azure AI Projects Integration for HR Agent Management:**  
+    > - The HR agent is created and managed using `AIProjectClient`, making it a first-class, durable entity within an Azure AI Project.  
+    > - Authentication is handled via `AzureCliCredential`, aligning agent access with Azure identity and enterprise security standards.
+
+    ---
+
+    > **Agent Discovery and Reuse Logic (New Addition):**  
+    > - Before creating a new agent, the system attempts to **list existing agents** and match by name (`Enterprise-HRAgent`).  
+    > - If an existing agent is found, it is reused, preventing duplication and ensuring stable agent identity across sessions.
+
+    ---
+
+    > **Persistent Agent Creation with HR-Specific Instructions:**  
+    > - When no existing agent is found, a new persistent HR agent is created with detailed, domain-specific instructions covering policies, benefits, leave, performance, and employee relations.  
+    > - This ensures the HR agent’s expertise and scope remain consistent over time.
+
+    ---
+
+    > **Structured CREATE_TICKET Output Contract (New Capability):**  
+    > - The HR agent is explicitly instructed to emit a **strict `CREATE_TICKET` block** when users request ticket creation.  
+    > - This enables reliable downstream automation while keeping the agent focused on reasoning rather than execution.
+
+    ---
+
+    > **Clear Separation of Reasoning and Action:**  
+    > - The agent is prevented from calling APIs or performing actions directly.  
+    > - Instead, it declaratively signals intent through structured output, allowing the orchestrator to validate and execute actions safely.
+
+    ---
+
+    > **ChatAgent Wrapper for Framework Consistency:**  
+    > - The persistent Azure AI HR agent is wrapped inside a `ChatAgent`, providing a consistent interaction interface with other agents in the system.  
+    > - This allows persistent and non-persistent agents to coexist seamlessly within the same multi-agent architecture.
+
+    ---
+
+    > **Foundation for Enterprise-Grade HR Automation:**  
+    > - These changes prepare the HR agent for real-world enterprise scenarios involving policy guidance, employee requests, and governed workflow automation.  
+    > - The design supports scalability, auditability, and future AgentOps enhancements.
 
     ```python
     import os
@@ -344,15 +452,51 @@ In this task, you’ll update the existing agent to be persistent agent and publ
 
     ![](./media/ss-72.png)
 
-    >This update converts the HR Agent into a persistent, cloud-hosted agent within Microsoft Foundry.
-    >It connects to the Foundry project using AIProjectClient, reuses the existing "Enterprise-HRAgent" if deployed, or creates a new one with specialized HR domain instructions.
-    >Once deployed, it’s wrapped in a ChatAgent linked via AzureAIAgentClient, enabling stateful, reusable, and centrally managed HR automation within the Foundry environment.
-
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
     ![](./media/ss-39.png)
 
 1. Select `planner_agent.py` file, and replace the content with below code snippet to configure persistent orchestrator.
+
+    > **Transition to a Persistent Planner Agent (Key Change):**  
+    > - The Planner Agent has been upgraded from a transient, per-execution agent to a **persistent agent managed by Azure AI Projects**.  
+    > - This allows the Planner to exist as a long-lived resource that can be reused across runs, improving stability and reducing repeated provisioning.
+
+    ---
+
+    > **Azure AI Projects Integration for Routing Control:**  
+    > - The Planner Agent is now created and discovered using `AIProjectClient`, making it a first-class entity within an Azure AI Project.  
+    > - Authentication is handled through `AzureCliCredential`, aligning routing logic with enterprise identity and access management.
+
+    ---
+
+    > **Agent Discovery and Reuse Logic (New Addition):**  
+    > - Before creating a new Planner Agent, the code attempts to **list existing agents** and match them by name (`Enterprise-PlannerAgent`).  
+    > - If a matching agent is found, it is reused, ensuring consistent routing behavior and avoiding duplicate planner instances.
+
+    ---
+
+    > **Persistent Planner Creation with Explicit Routing Instructions:**  
+    > - If no existing agent is found, a new persistent Planner Agent is created with strict routing instructions.  
+    > - The instructions clearly define available specialist agents (HR, Finance, Compliance) and enforce a **single-word routing output**, ensuring deterministic downstream orchestration.
+
+    ---
+
+    > **ChatAgent Wrapper for Framework Consistency:**  
+    > - The persistent Azure AI Planner Agent is wrapped using `ChatAgent`, providing a uniform interaction interface consistent with other agents in the system.  
+    > - This allows the Planner to seamlessly participate in both persistent and non-persistent multi-agent workflows.
+
+    ---
+
+    > **Routing Logic Remains Deterministic (No Behavioral Change):**  
+    > - The `classify_target()` function continues to apply hybrid routing logic—LLM-based intent detection followed by keyword-based fallback.  
+    > - This ensures routing reliability remains unchanged while benefiting from the new persistent agent lifecycle.
+
+    ---
+
+    > **Foundation for Enterprise-Scale Agent Orchestration:**  
+    > - With persistence, reuse, and governed identity, the Planner Agent now supports production-grade agent orchestration.  
+    > - This change lays the groundwork for advanced AgentOps capabilities such as auditing, monitoring, and long-running multi-agent coordination.
 
     ```python
     import os

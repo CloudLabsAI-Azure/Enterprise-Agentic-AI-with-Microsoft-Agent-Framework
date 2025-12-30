@@ -80,7 +80,41 @@ In this task, you will define the Planner Agent that interprets user queries and
 
    ![](./media/ss-34.png)
 
-1. Add the following python code to configure planner agent.
+1. Add the following Python code to configure the Planner Agent. The Planner Agent acts as the **entry point** for all user queries in the multi-agent system. Instead of forcing users to decide which department to contact, this agent analyzes the query and intelligently routes it to the correct specialist agent (HR, Finance, or Compliance).
+
+   > **Purpose of the Planner Agent (Why it Exists):**  
+   > - In real-world enterprise copilots, users ask questions in natural language without knowing which department (HR, Finance, or Compliance) should handle them.  
+   > - The Planner Agent acts as a smart front door that understands the *intent* behind the query and decides which specialist agent should take over, keeping the user experience seamless and intuitive.
+
+   ---
+
+   > **Agent Creation Using AzureOpenAIResponsesClient:**  
+   > - The Planner Agent is created using the Azure OpenAI Responses API through the Agent Framework SDK.  
+   > - Environment-based configuration (API key, endpoint, deployment, version) allows the same code to work across development, testing, and production without changes, following enterprise security best practices.
+
+   ---
+
+   > **LLM-Guided Intelligent Routing (Core Logic):**  
+   > - Instead of relying only on hard-coded rules, the Planner uses an LLM to understand context, phrasing, and user intent.  
+   > - This allows it to correctly route queries even when users don’t use exact keywords (for example, understanding that “team dinner reimbursement” belongs to Finance).
+
+   ---
+
+   > **Strict One-Word Output for Reliable Automation:**  
+   > - The Planner is explicitly instructed to return **only one word** — HR, FINANCE, or COMPLIANCE.  
+   > - This design makes downstream routing deterministic and predictable, avoiding complex parsing and preventing accidental hallucinated explanations from the model.
+
+   ---
+
+   > **`classify_target()` for Safe Decision Making:**  
+   > - This function first asks the Planner Agent to classify the query using model reasoning.  
+   > - If the response is unclear or deviates from expectations, the function safely interprets or corrects the result before routing.
+
+   ---
+
+   > **Hybrid AI + Rule-Based Fallback Strategy:**  
+   > - To ensure production-grade reliability, a keyword-scoring fallback is used when the AI response is ambiguous.  
+   > - This hybrid approach combines the flexibility of AI with the certainty of deterministic logic, ensuring that every user query is routed correctly—no matter what.
 
    ```python
    import os
@@ -88,12 +122,21 @@ In this task, you will define the Planner Agent that interprets user queries and
    from agent_framework.azure import AzureOpenAIResponsesClient  # type: ignore
 
    async def build_planner_agent():
+      """
+      Creates and configures a planner agent that routes user queries to appropriate specialists.
+      
+      Returns:
+         An agent client configured with routing instructions for HR, Finance, and Compliance queries.
+      """
+      # Initialize Azure OpenAI client with credentials from environment variables
       client = AzureOpenAIResponsesClient(
          api_key=os.getenv("AZURE_OPENAI_API_KEY"),
          endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
          deployment_name=os.getenv("AZURE_OPENAI_RESPONSES_DEPLOYMENT_NAME"),
          api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
       )
+      
+      # Create agent with specialized routing instructions
       return client.create_agent(
          name="PlannerAgent",
          instructions=(
@@ -110,15 +153,27 @@ In this task, you will define the Planner Agent that interprets user queries and
       )
 
    async def classify_target(planner_agent, user_query: str) -> str:
+      """
+      Classifies a user query and routes it to the appropriate department using the planner agent.
+      
+      Args:
+         planner_agent: The initialized planner agent instance
+         user_query: The user's question or request to be classified
+         
+      Returns:
+         str: One of "HR", "FINANCE", or "COMPLIANCE" indicating the target department
+      """
+      # Send the query to the planner agent for classification
       result = await planner_agent.run(
          "Analyze and route this query:\n\n"
          f"User query: {user_query}\n\n"
          "Return exactly one word: HR, FINANCE, or COMPLIANCE."
       )
-      # Extract the text content from the AgentRunResponse object
+      
+      # Extract and normalize the text response from the agent
       text = str(result).strip().lower()
       
-      # Advanced classification with fallback logic
+      # Primary classification: Check if agent response contains department names
       if "finance" in text or "financial" in text:
          return "FINANCE"
       elif "hr" in text or "human" in text:
@@ -126,16 +181,20 @@ In this task, you will define the Planner Agent that interprets user queries and
       elif "compliance" in text or "legal" in text:
          return "COMPLIANCE"
       else:
-         # Fallback keyword analysis if agent response is unclear
+         # Fallback mechanism: If agent response is unclear, use keyword-based scoring
          query_lower = user_query.lower()
+         
+         # Define keyword lists for each department category
          finance_keywords = ["reimburs", "expense", "cost", "budget", "money", "payment", "allowance", "travel", "meal", "flight", "hotel"]
          hr_keywords = ["leave", "sick", "vacation", "employee", "benefit", "policy", "hire", "performance", "work"]
          compliance_keywords = ["gdpr", "privacy", "compliance", "legal", "audit", "regulation", "data protection"]
          
+         # Calculate match scores by counting keyword occurrences in the query
          finance_score = sum(1 for keyword in finance_keywords if keyword in query_lower)
          hr_score = sum(1 for keyword in hr_keywords if keyword in query_lower)
          compliance_score = sum(1 for keyword in compliance_keywords if keyword in query_lower)
          
+         # Return the department with the highest keyword match score
          if finance_score > hr_score and finance_score > compliance_score:
                return "FINANCE"
          elif hr_score > compliance_score:
@@ -145,21 +204,6 @@ In this task, you will define the Planner Agent that interprets user queries and
    ```
 
    ![](./media/ss-35.png)
-
-   > Purpose of Planner Agent:
-   > - This agent is designed to analyze user queries and decide which specialist agent (HR, Finance, or Compliance) should handle the response.
-
-   >Agent Creation Using AzureOpenAIResponsesClient:
-   > - The build_planner_agent() function initializes the Planner using the Agent Framework SDK with API-based credentials loaded from environment variables.
-
-   >LLM-Guided Routing (Primary Logic):
-   > - The Planner agent is instructed to return exactly one word — HR, FINANCE, or COMPLIANCE — based on keywords and context in the query.
-
-   >classify_target() for Decision Making:
-   > - This function first uses an await agent.run() call to ask the Planner which specialist to select. If the response is unclear, it applies a fallback keyword-based analysis.
-
-   >Hybrid AI + Heuristic Strategy:
-   > - The design ensures reliable routing, combining model reasoning with manual keyword scoring, making the Planner robust even when AI output is vague.
 
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
@@ -171,18 +215,61 @@ In this task, you will develop domain-specific agents responsible for HR, Financ
 
 1. From the list, select `hr_agent.py` under agent folder and add the following python code to configure hr agent. Add the following python code to configure hr agent.
 
+   > **Purpose of the HR Agent:**  
+   > - The HR Agent functions as a **dedicated human resources subject-matter expert** within the multi-agent system.  
+   > - It is designed to handle employee-centric queries related to workplace policies, leave entitlements, benefits, performance management, and overall employee well-being, ensuring accurate and consistent HR guidance.
+
+   ---
+
+   > **Agent Initialization Using AzureOpenAIResponsesClient:**  
+   > - The `build_hr_agent()` function initializes the HR Agent using the Azure OpenAI Responses API via the Agent Framework SDK.  
+   > - Authentication and configuration details such as API keys, endpoints, deployment names, and API versions are securely loaded from environment variables, enabling enterprise-grade deployment and easy environment portability.
+
+   ---
+
+   > **Domain-Specific HR Specialization:**  
+   > - The agent instructions explicitly define the HR domain boundaries, covering areas such as leave policies, employee benefits, onboarding, performance reviews, and employee relations.  
+   > - This strict scoping ensures the agent responds **only** to HR-related questions and avoids cross-domain answers, improving accuracy and trust.
+
+   ---
+
+   > **Policy-Aware and Actionable Guidance:**  
+   > - The HR Agent is instructed to provide clear, practical, and policy-aligned responses rather than generic advice.  
+   > - Where applicable, it references standard HR practices or policies, helping employees understand both the *what* and the *why* behind HR decisions.
+
+   ---
+
+   > **Professional and Empathetic Communication Style:**  
+   > - The agent is designed to mirror real-world HR communication standards by maintaining a tone that is professional, respectful, and empathetic.  
+   > - This is especially important for sensitive topics such as leave, performance discussions, or employee relations, making the agent suitable for internal organizational use.
+
+   ---
+
+   > **Foundation for Multi-Agent Collaboration:**  
+   > - Once created, the HR Agent operates as a specialist component within a larger multi-agent architecture.  
+   > - It is invoked by the Planner Agent whenever an HR-related intent is detected, enabling seamless delegation and coordinated responses across multiple domain agents.
+
    ```python
    import os
    import asyncio
    from agent_framework.azure import AzureOpenAIResponsesClient  # type: ignore
 
    async def build_hr_agent():
+      """
+      Creates and configures an HR specialist agent for handling employee-related queries.
+      
+      Returns:
+         An agent client configured with HR policy expertise and guidance instructions.
+      """
+      # Initialize Azure OpenAI client with credentials from environment variables
       client = AzureOpenAIResponsesClient(
          api_key=os.getenv("AZURE_OPENAI_API_KEY"),
          endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
          deployment_name=os.getenv("AZURE_OPENAI_RESPONSES_DEPLOYMENT_NAME"),
          api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
       )
+      
+      # Create HR specialist agent with comprehensive employment and policy knowledge
       return client.create_agent(
          name="HRAgent",
          instructions=(
@@ -203,26 +290,45 @@ In this task, you will develop domain-specific agents responsible for HR, Financ
 
    ![](./media/ss-36.png)
 
-   >Purpose of the HR Agent:
-   > - This agent acts as a dedicated HR policy expert, trained to respond to questions related to employee welfare, leave structures, benefits, and workplace procedures.
-
-   >Agent Initialization with Azure Responses Client:
-   > - The build_hr_agent() function initializes the agent using AzureOpenAIResponsesClient, authenticated through API keys and endpoint values stored in environment variables.
-
-   >Domain-Specific Specialization:
-   > - The instructions section clearly defines the HR agent’s scope — including leave types, benefits, onboarding, employee relations, and performance management — ensuring it responds only to HR-related queries.
-
-   >Professional and Empathetic Tone:
-   > - The agent is designed to mimic real HR communication standards, providing guidance that is accurate, professional, and empathetic, ideal for internal organizational assistants.
-
-   >Foundation for Multi-Agent Collaboration:
-   > - Once built, this HR agent will be invoked by the Planner Agent, allowing automated delegation in multi-agent workflows when HR-related queries are detected.
-
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
    ![](./media/ss-39.png)
 
 1. From the list, select `finance_agent.py` under agent folder and add the following python code to configure compliance agent. Add the following python code to configure finance agent.
+
+   > **Specialized Finance Agent Role:**  
+   > - The Finance Agent acts as a **dedicated financial policy expert** within the multi-agent system.  
+   > - It is responsible for handling all finance-related queries, including reimbursements, travel expenses, meal allowances, budgets, and purchase approvals, ensuring consistent and policy-compliant financial guidance.
+
+   ---
+
+   > **Agent Initialization Using Agent Framework SDK:**  
+   > - The `build_finance_agent()` function creates the Finance Agent using the Azure OpenAI Responses API through the Agent Framework SDK.  
+   > - Authentication details such as API keys, endpoints, deployment names, and API versions are securely retrieved from environment variables, aligning with enterprise security and deployment best practices.
+
+   ---
+
+   > **Policy-Focused and Scoped Instructions:**  
+   > - The agent instructions explicitly limit the Finance Agent’s scope to financial procedures and policies.  
+   > - This clear boundary ensures the agent responds accurately to questions about costs, payments, budgets, reimbursements, and corporate expense rules, without drifting into other domains.
+
+   ---
+
+   > **Precision-Oriented and Actionable Responses:**  
+   > - Unlike general-purpose assistants, the Finance Agent is designed to deliver **specific, actionable outputs**.  
+   > - It provides concrete details such as reimbursement limits, eligibility criteria, approval workflows, and financial procedures, making it immediately useful for employees and finance teams.
+
+   ---
+
+   > **Enterprise-Ready Financial Guidance:**  
+   > - The agent’s responses are structured to reflect real-world finance operations, emphasizing clarity, accuracy, and compliance with internal policies.  
+   > - This makes the agent suitable for internal use cases where financial accuracy and consistency are critical.
+
+   ---
+
+   > **Seamless Planner-Based Delegation (A2A):**  
+   > - The Finance Agent is invoked automatically by the Planner Agent whenever finance-related intent or keywords are detected.  
+   > - This enables smooth agent-to-agent (A2A) collaboration, ensuring each query is handled by the correct domain expert within the multi-agent workflow.
 
    ```python
    import os
@@ -230,12 +336,21 @@ In this task, you will develop domain-specific agents responsible for HR, Financ
    from agent_framework.azure import AzureOpenAIResponsesClient  # type: ignore
 
    async def build_finance_agent():
+      """
+      Creates and configures a Finance specialist agent for handling financial and expense queries.
+      
+      Returns:
+         An agent client configured with finance policy and reimbursement expertise.
+      """
+      # Initialize Azure OpenAI client with credentials from environment variables
       client = AzureOpenAIResponsesClient(
          api_key=os.getenv("AZURE_OPENAI_API_KEY"),
          endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
          deployment_name=os.getenv("AZURE_OPENAI_RESPONSES_DEPLOYMENT_NAME"),
          api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
       )
+      
+      # Create Finance specialist agent with expertise in expenses and reimbursements
       return client.create_agent(
          name="FinanceAgent",
          instructions=(
@@ -249,26 +364,45 @@ In this task, you will develop domain-specific agents responsible for HR, Financ
 
    ![](./media/ss-45.png)
 
-   >Specialized Finance Role:
-   > - This agent is designed to handle all finance-related topics, including reimbursement policies, travel budgets, allowances, and purchase approvals.
-
-   >Initialization via Agent Framework SDK:
-   > - The build_finance_agent() function creates an agent using AzureOpenAIResponsesClient, leveraging API key authentication from secure environment variables.
-
-   >Policy-Focused Instructions:
-   > - The agent's instructions clearly limit its responsibility to financial procedures, ensuring accurate answers about costs, payments, budgets, and corporate expense rules.
-
-   >Precision and Actionable Outputs:
-   > - Unlike general-purpose agents, this finance assistant is instructed to provide specific policy values, such as limits, eligibility, or approval flows, making it practical for employees.
-
-   >Supports Planner Delegation (A2A):
-   > - This agent will be invoked automatically when the Planner detects finance-related keywords or queries, enabling seamless multi-agent collaboration in the system.
-
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
    ![](./media/ss-39.png)
 
 1. From the list, select `compliance_agent.py` under agent folder and add the following python code to configure compliance agent. Add the following python code to configure compliance agent.
+
+   > **Purpose of the Compliance Agent:**  
+   > - The Compliance Agent acts as a **dedicated legal and regulatory authority** within the multi-agent system.  
+   > - It is responsible for handling queries related to data privacy, regulatory compliance, legal obligations, risk management, and security standards, ensuring responses meet enterprise governance requirements.
+
+   ---
+
+   > **Agent Initialization Using AzureOpenAIResponsesClient:**  
+   > - The `build_compliance_agent()` function initializes the Compliance Agent using the Azure OpenAI Responses API via the Microsoft Agent Framework SDK.  
+   > - Authentication and configuration details (API keys, endpoint, deployment name, and API version) are securely loaded from environment variables, supporting enterprise-grade security and portability.
+
+   ---
+
+   > **Clearly Defined Regulatory and Legal Scope:**  
+   > - The agent instructions explicitly define its domain of expertise, covering global privacy regulations (GDPR, HIPAA, SOX, PCI-DSS), audit readiness, contract law, and information security policies.  
+   > - This clear scoping ensures the agent delivers **high-trust, compliance-focused responses** without crossing into non-legal domains.
+
+   ---
+
+   > **Authoritative, Policy-Driven Guidance:**  
+   > - The Compliance Agent is designed to provide factual, well-researched answers backed by legal references or regulatory citations where applicable.  
+   > - It also includes practical implementation guidance and highlights potential risks, enabling informed and compliant decision-making.
+
+   ---
+
+   > **Formal and Professional Communication Style:**  
+   > - The agent is configured to respond in a formal, authoritative tone that aligns with legal and compliance communication standards.  
+   > - This makes it suitable for enterprise use cases involving audits, regulatory reviews, or policy clarification.
+
+   ---
+
+   > **Role in Multi-Agent Collaboration (A2A):**  
+   > - Within the multi-agent architecture, the Compliance Agent is invoked automatically by the Planner Agent when legal or compliance-related intent is detected.  
+   > - This agent-to-agent (A2A) delegation ensures accuracy, governance, and regulatory integrity across enterprise workflows.
 
    ```python
    import os
@@ -303,21 +437,6 @@ In this task, you will develop domain-specific agents responsible for HR, Financ
 
    ![](./media/ss-37.png)
 
-   >Purpose of the Agent:
-   > - This agent serves as a dedicated legal and compliance authority, responsible for handling queries related to GDPR, regulatory frameworks, contract law, risk assessments, and security standards.
-
-   >Agent Initialization:
-   > - The build_compliance_agent() function uses AzureOpenAIResponsesClient with API key authentication to register the Compliance agent through the Microsoft Agent Framework SDK.
-
-   >Regulatory Expertise Defined in Instructions:
-   > - The instructions provide a clear compliance scope — including global privacy regulations (GDPR, HIPAA, SOX), audit readiness, legal agreements, and breach protocols — ensuring high-trust responses.
-
-   >Tone and Output Expectations:
-   > - This agent is configured to deliver answers in a formal, authoritative tone, including legal citations or implementation recommendations when applicable.
-
-   >Role in Multi-Agent System:
-   > - During A2A delegation, the Planner Agent will route legal or compliance-related queries to this specialist, maintaining accuracy and governance in enterprise decision workflows.
-
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
    ![](./media/ss-39.png)
@@ -330,6 +449,40 @@ In this task, you will implement routing logic using an Agent Workflow so the Pl
 
 1. From the list, select `main.py` under agent folder and add the following python code to configure A2A communication flow agent. Add the following python code to configure agent routing logic.
 
+   > **Central Execution Engine (Why This Script Exists):**  
+   > - This script acts as the **core orchestrator** of the multi-agent system, serving as the single execution layer that coordinates the Planner, HR, Finance, and Compliance agents.  
+   > - It brings together routing, execution, response handling, and system control, transforming individual agents into a unified enterprise-grade assistant.
+
+   ---
+
+   > **Agent Network Initialization:**  
+   > - At startup, the script loads environment configurations and asynchronously builds each agent using `await build_*_agent()`.  
+   > - All initialized agents are stored in a shared dictionary, enabling dynamic lookup and delegation without hard-coded dependencies.
+
+   ---
+
+   > **Advanced Agent-to-Agent (A2A) Routing:**  
+   > - The `run_multi_agent()` function first delegates intent classification to the Planner Agent.  
+   > - Based on the Planner’s decision, the query is routed to the appropriate specialist agent (HR, Finance, or Compliance), and the system captures routing details, execution timing, success status, and the final response.
+
+   ---
+
+   > **Multiple Execution Modes for Testing and Exploration:**  
+   > - **Batch Mode (Default):** Executes a predefined set of test queries to validate routing logic and agent behavior across domains.  
+   > - **Interactive Mode (`--interactive`):** Enables real-time, conversational interaction through the command line, allowing users to explore and test the multi-agent system dynamically.
+
+   ---
+
+   > **Production-Ready Resilience and Observability:**  
+   > - The script includes structured logging, timestamps, response formatting, and error-handling mechanisms to ensure stability and clarity during execution.  
+   > - These features lay the groundwork for advanced observability, telemetry, monitoring, and AgentOps capabilities in later stages of the solution.
+
+   ---
+
+   > **Foundation for Enterprise-Scale Agent Systems:**  
+   > - By centralizing orchestration, routing, and execution control, this engine demonstrates how multi-agent systems are built for real-world enterprise use.  
+   > - It provides a scalable blueprint that can be extended with authentication, persistence, monitoring, or UI layers in future enhancements.
+
    ```python
    import asyncio
    import time
@@ -341,39 +494,48 @@ In this task, you will implement routing logic using an Agent Workflow so the Pl
    from agents.compliance_agent import build_compliance_agent
    from agents.finance_agent import build_finance_agent
 
-   # Configure logging
+   # Configure logging with timestamp, level, and message formatting
    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
    async def run_multi_agent(query: str, agents: Dict[str, Any]) -> Dict[str, Any]:
       """
       Advanced multi-agent system with routing, timing, and comprehensive response handling.
+      
+      Args:
+         query: The user's question or request
+         agents: Dictionary containing all initialized agent instances
+         
+      Returns:
+         Dict containing query results, routing info, response, timing, and success status
       """
+      # Record start time for performance tracking
       start_time = time.time()
       
       try:
-         # Step 1: Route the query
+         # Step 1: Route the query to the appropriate specialist agent
          logging.info(f"Routing query: {query[:50]}...")
          target = await classify_target(agents["planner"], query)
          logging.info(f"Query routed to: {target}")
          
-         # Step 2: Get response from appropriate agent
+         # Step 2: Map the target department to the corresponding agent
          agent_mapping = {
                "HR": ("hr", "HRAgent"),
                "FINANCE": ("finance", "FinanceAgent"), 
                "COMPLIANCE": ("compliance", "ComplianceAgent")
          }
          
+         # Execute the query with the appropriate specialist agent
          if target in agent_mapping:
                agent_key, agent_name = agent_mapping[target]
                answer = await agents[agent_key].run(query)
          else:
-               # Fallback to HR if routing unclear
+               # Fallback mechanism: Default to HR agent if routing is unclear
                logging.warning(f"Unknown target '{target}', falling back to HR")
                answer = await agents["hr"].run(query)
                target = "HR"
                agent_name = "HRAgent"
          
-         # Step 3: Process response
+         # Step 3: Calculate response time and package the results
          response_time = time.time() - start_time
          
          return {
@@ -387,6 +549,7 @@ In this task, you will implement routing logic using an Agent Workflow so the Pl
          }
          
       except Exception as e:
+         # Handle any errors that occur during query processing
          logging.error(f"Error processing query: {e}")
          return {
                "query": query,
@@ -399,9 +562,19 @@ In this task, you will implement routing logic using an Agent Workflow so the Pl
          }
 
    def format_response(result: Dict[str, Any]) -> str:
-      """Format the agent response for display."""
+      """
+      Format the agent response for user-friendly display.
+      
+      Args:
+         result: Dictionary containing the agent's response data
+         
+      Returns:
+         Formatted string with response summary and answer
+      """
+      # Use visual indicator based on success status
       status_icon = "✅" if result["success"] else "❌"
       
+      # Create formatted output with structured information
       formatted = f"""
    {status_icon} Agent Response Summary:
    ┌─ Routed to: {result['routed_to']} ({result['agent_name']})
@@ -415,18 +588,28 @@ In this task, you will implement routing logic using an Agent Workflow so the Pl
       return formatted
 
    async def run_interactive_mode(agents: Dict[str, Any]):
-      """Interactive mode for real-time queries."""
+      """
+      Interactive mode for real-time user queries with command-line interface.
+      
+      Args:
+         agents: Dictionary containing all initialized agent instances
+      """
+      # Display welcome message and available commands
       print("\n🤖 Enterprise Agent System - Interactive Mode")
       print("Available agents: HR, Finance, Compliance")
       print("Type 'quit' to exit, 'help' for commands\n")
       
+      # Main interactive loop
       while True:
          try:
+               # Get user input
                query = input("Enter your question: ").strip()
                
+               # Handle exit commands
                if query.lower() in ['quit', 'exit', 'q']:
                   print("👋 Goodbye!")
                   break
+               # Handle help command
                elif query.lower() == 'help':
                   print("""
    📋 Available Commands:
@@ -440,51 +623,67 @@ In this task, you will implement routing logic using an Agent Workflow so the Pl
    - "Do we need GDPR compliance for EU customers?"
    """)
                   continue
+               # Skip empty inputs
                elif not query:
                   continue
-                  
+               
+               # Process the query and display formatted response
                result = await run_multi_agent(query, agents)
                print(format_response(result))
                
          except KeyboardInterrupt:
+               # Handle Ctrl+C gracefully
                print("\n👋 Goodbye!")
                break
          except Exception as e:
+               # Log and display any unexpected errors
                logging.error(f"Interactive mode error: {e}")
                print(f"❌ Error: {e}")
 
    async def run_batch_tests(agents: Dict[str, Any]):
-      """Run predefined test queries."""
+      """
+      Run predefined test queries to validate agent functionality.
+      
+      Args:
+         agents: Dictionary containing all initialized agent instances
+      """
+      # Define test cases covering all three specialist domains
       test_queries = [
-               "How much reimbursement is allowed for international flights?",
-               "Is employee data protected under GDPR?",
-               "How many sick leave days do employees get?"
-
+         "How much reimbursement is allowed for international flights?",
+         "Is employee data protected under GDPR?",
+         "How many sick leave days do employees get?"
       ]
       
       print("🧪 Running batch tests...\n")
       
+      # Execute each test query sequentially
       for i, query in enumerate(test_queries, 1):
+         # Display test header with visual separation
          print(f"{'='*80}")
          print(f"TEST {i}/{len(test_queries)}: {query}")
          print(f"{'='*80}")
          
+         # Run the query and display formatted results
          result = await run_multi_agent(query, agents)
          print(format_response(result))
          
-         # Small delay between queries for better readability
+         # Add delay between tests for better readability
          if i < len(test_queries):
                await asyncio.sleep(0.5)
 
    async def main():
-      """Main application entry point with enhanced features."""
+      """
+      Main application entry point with enhanced features.
+      Initializes agents and runs in either interactive or batch mode.
+      """
       print("🚀 Initializing Enterprise Agent System...")
       
       try:
-         # Load environment and build agents
+         # Load environment variables and initialize all agents
          load_env()
          logging.info("Building agent network...")
          
+         # Create instances of all specialist agents
          agents = {
                "planner": await build_planner_agent(),
                "hr": await build_hr_agent(), 
@@ -494,39 +693,27 @@ In this task, you will implement routing logic using an Agent Workflow so the Pl
          
          logging.info("✅ All agents initialized successfully")
          
-         # Check if running interactively or in batch mode
+         # Determine execution mode based on command-line arguments
          import sys
          if len(sys.argv) > 1 and sys.argv[1] == "--interactive":
+               # Run in interactive mode for real-time queries
                await run_interactive_mode(agents)
          else:
+               # Run predefined batch tests by default
                await run_batch_tests(agents)
                
       except Exception as e:
+         # Handle critical initialization failures
          logging.error(f"System initialization failed: {e}")
          print(f"❌ Failed to start system: {e}")
 
+   # Entry point: Run the async main function
    if __name__ == "__main__":
       asyncio.run(main())
 
    ```
 
    ![](./media/ss-46.png)
-
-   >Central Execution Engine:
-   > - This script acts as the core orchestrator, coordinating all agents (Planner, HR, Finance, Compliance) and managing multi-agent routing using the Microsoft Agent Framework.
-
-   >Agent Network Initialization:
-   > - It loads environment settings, builds each agent with await build_*_agent(), and registers them into a shared dictionary for easy delegation.
-
-   >Advanced A2A Routing:
-   > - The run_multi_agent() function routes user queries to the correct specialist through the Planner, then awaits the specialist agent’s response. It captures routing, timing, success status, and final answer.
-
-   >Multiple Execution Modes:
-   > - Batch Mode: Runs predefined test queries.
-   > - Interactive Mode (--interactive): Enables real-time chat for live testing and exploration.
-
-   >Production-Ready Resilience:
-   > - Includes response formatting, timestamps, error fallback mechanisms, and logging — laying a strong foundation for observability, telemetry, and AgentOps in later exercises.
 
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 

@@ -24,7 +24,7 @@ In this task you will update environment variables with AI Search credentials, c
 MCP is a standard that enables AI agents to securely access external knowledge and tools through structured input/output contracts.
 It allows agents to retrieve factual information, invoke APIs, and perform actions in a controlled and auditable manner, forming the backbone of grounded and extensible enterprise AI systems.
 
-1. In the Azure Portal, navigate to your resource group, and from the resource list select **ai-knowledge-<inject key="DeploymentID" enableCopy="false"/>** Search service.
+1. In the Azure Portal, navigate to **agenticai**, and from the resource list select **ai-knowledge-<inject key="DeploymentID" enableCopy="false"/>** Search service.
 
    ![](./media/ss-3.png)
 
@@ -50,6 +50,10 @@ It allows agents to retrieve factual information, invoke APIs, and perform actio
    
    >**Note:** Please replace the `Query_Key` and `Index_Name` values with the ones you have copied earlier.
 
+1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
+
+   ![](./media/ss-39.png)
+
 1. Once done, click on the **Create Folder** option as shown and when it prompts, provide the folder name as `tools`. Please create new folder in root.
 
    ![](./media/ss-50.png)
@@ -65,6 +69,46 @@ It allows agents to retrieve factual information, invoke APIs, and perform actio
 1. Provide the name for the file as `azure_search_tool.py`. 
 
 1. Once created, add the following code snippet to configure a search tool for your agent.
+
+   > **Purpose of the AzureSearchTool:**  
+   > - The `AzureSearchTool` acts as an **async, MCP-style retrieval tool** that allows agents to query an Azure Cognitive Search index.  
+   > - It provides factual, grounded context snippets that can be injected into agent reasoning, enabling Retrieval-Augmented Generation (RAG) patterns in enterprise agent workflows.
+
+   ---
+
+   > **Environment-Based and Secure Configuration:**  
+   > - The tool reads the Azure Search endpoint, API key, and index name directly from environment variables.  
+   > - This approach avoids hard-coded secrets, supports multiple environments (dev/test/prod), and aligns with enterprise security best practices.
+
+   ---
+
+   > **Async Search Execution (Core Capability):**  
+   > - The `search()` method performs an asynchronous POST request to the Azure Search REST API using `aiohttp`.  
+   > - It retrieves the top-matching documents for a query and intelligently extracts meaningful content fields (`content`, `text`, or `description`) to construct a consolidated context response.
+
+   ---
+
+   > **Clean and Agent-Friendly Output:**  
+   > - Retrieved document snippets are normalized and concatenated into a single string response.  
+   > - This format is optimized for agent consumption, making it easy to pass search results directly into prompts or agent reasoning flows.
+
+   ---
+
+   > **Built-in Health Check for Diagnostics:**  
+   > - The `health_check()` method validates connectivity to the Azure Search service and index availability.  
+   > - It returns structured status information, making it suitable for monitoring, diagnostics, or startup validation in production systems.
+
+   ---
+
+   > **Standalone Testing and Validation Mode:**  
+   > - The file includes a `main()` function that allows the tool to be run independently.  
+   > - It loads environment variables, performs a health check, and executes sample search queries, enabling quick verification before integrating the tool into agent pipelines.
+
+   ---
+
+   > **Foundation for RAG-Enabled Multi-Agent Systems:**  
+   > - When integrated with Planner and Specialist agents, this tool enables grounded responses based on indexed enterprise data.  
+   > - It forms a critical building block for scalable, trustworthy, and context-aware agentic AI solutions.
 
    ```python
    import os
@@ -176,18 +220,6 @@ It allows agents to retrieve factual information, invoke APIs, and perform actio
 
    ![](./media/ss-54.png)
 
-   >Purpose of AzureSearchTool:
-   >- This tool provides an async MCP-compatible interface for agents to query the Azure Cognitive Search index and retrieve factual context snippets relevant to user queries.
-
-   >Environment-Based Configuration:
-   >- The tool reads Azure Search credentials — endpoint, API key, and index name — directly from environment variables, ensuring secure and flexible configuration.
-
-   >Core Search Functionality (search method):
-   >- The search() method sends an async POST request to the Azure Search REST API, fetching top-matching documents and concatenating their content fields into a single contextual string.
-
-   >Testing and Diagnostic Mode:
-   >- The file includes a built-in main() routine that loads environment variables, performs a live health check, and runs sample queries for quick standalone validation before agent integration.
-
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
    ![](./media/ss-39.png)
@@ -213,6 +245,49 @@ In this task you will attach the AzureSearchTool to HR/Finance/Compliance agents
 1. As you have created the tool, now you have to change the orchestration of the agent to trigger the search tool before giving a response.
 
 1. In the Visual Studio Code explorer, open the `main.py` file and replace its existing content with the code provided below.
+
+   > **Purpose of the Updated Orchestrator (What Changed):**  
+   > - This updated main script enhances the earlier multi-agent orchestrator by introducing **context-grounded reasoning**.  
+   > - Instead of relying solely on LLM knowledge, agent responses are now enriched with enterprise data retrieved from Azure AI Search, improving accuracy, trust, and relevance.
+
+   ---
+
+   > **Azure AI Search Tool Integration (New Capability):**  
+   > - A new `AzureSearchTool` is initialized and registered in the agents dictionary as `agents["search_tool"]`.  
+   > - During startup, a health check is performed to validate connectivity and index readiness before the tool is used in live query execution.
+
+   ---
+
+   > **Context Retrieval Before Agent Execution:**  
+   > - Inside `run_multi_agent()`, the system now retrieves relevant knowledge snippets using  
+   >   `context = await agents["search_tool"].search(query, top=3)`.  
+   > - This step ensures that every agent response can be grounded in indexed enterprise content when available.
+
+   ---
+
+   > **Context-Enriched Prompt Construction (Key Logic Change):**  
+   > - A new **enriched prompt** is constructed by combining:
+   >   - Retrieved Azure Search context  
+   >   - The original user query  
+   > - The prompt explicitly instructs the specialist agent to treat the retrieved context as the **primary source of truth**, reducing hallucinations and increasing factual consistency.
+
+   ---
+
+   > **Grounding Awareness in Responses:**  
+   > - The system tracks whether meaningful context was retrieved using a simple heuristic (`context_retrieved`).  
+   > - This metadata is surfaced in the formatted response, improving transparency and aiding debugging or evaluation.
+
+   ---
+
+   > **Resilient Fallback When Search Is Unavailable:**  
+   > - If Azure AI Search initialization fails, a lightweight mock search tool is automatically substituted.  
+   > - This ensures the system continues to function for development or demo scenarios while clearly indicating that results are not grounded in enterprise data.
+
+   ---
+
+   > **Evolution Toward Production-Grade RAG Architecture:**  
+   > - These changes transform the system from a pure multi-agent router into a **RAG-enabled, enterprise-ready agent platform**.  
+   > - The design establishes a foundation for future enhancements such as citation tracking, confidence scoring, observability, and governance controls.
 
    ```python
    import asyncio
@@ -481,18 +556,6 @@ In this task you will attach the AzureSearchTool to HR/Finance/Compliance agents
 
    ![](./media/ss-56.png)
 
-   >Purpose of Updated Main Script:
-   >- This version extends the earlier orchestrator to integrate Azure AI Search via MCP, enabling each agent’s responses to be context-grounded using enterprise data instead of generic LLM reasoning.
-
-   >Search Tool Integration (New Feature):
-   >- The AzureSearchTool instance is initialized and attached to the agents dictionary as agents["search_tool"].
-   >- Before the system runs, it performs a health check to confirm Azure AI Search connectivity and index readiness.
-
-   >Context Enrichment Logic (Enhanced run_multi_agent):
-   >- For every query, the system now fetches related text snippets from Azure Search (context = await agents["search_tool"].search(query)).
-   >- The returned context is embedded directly into the prompt before sending to the specialized agent.
-   >- The LLM is explicitly instructed to base answers primarily on this contextual data, ensuring factually grounded responses.
-
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
    ![](./media/ss-39.png)
@@ -638,6 +701,46 @@ This tool will allow agents, especially Finance and HR to create real tickets wh
 
 1. Now, select the file and add the following code snippet to configure the tool.
 
+   > **Purpose of the FreshdeskTool:**  
+   > - The `FreshdeskTool` provides an **asynchronous integration layer** between the agent system and the Freshdesk ticketing platform.  
+   > - It enables agents to automatically create support or service tickets based on user interactions, bridging conversational AI with real operational workflows.
+
+   ---
+
+   > **Secure Authentication and Environment-Based Setup:**  
+   > - The tool authenticates with Freshdesk using **Basic Authentication** derived from the Freshdesk API key.  
+   > - All configuration values—including domain, API key, default priority, and optional group assignment—are securely read from environment variables, ensuring safe and flexible deployment across environments.
+
+   ---
+
+   > **Ticket Creation Logic (Core Capability):**  
+   > - The `create_ticket()` method constructs a structured JSON payload containing the ticket subject, description, priority, requester details, and optional tags.  
+   > - An asynchronous POST request is sent to the `/api/v2/tickets` endpoint, creating a real Freshdesk ticket and returning normalized ticket metadata such as ID, status, priority, and URL.
+
+   ---
+
+   > **Normalized and Agent-Friendly Response Handling:**  
+   > - Instead of returning raw API responses only, the tool extracts and returns a simplified ticket object.  
+   > - This makes it easy for agents or orchestrators to display ticket details, store references, or trigger follow-up actions.
+
+   ---
+
+   > **SSL Handling for Development and Testing:**  
+   > - A custom SSL context is used to allow insecure connections in non-production or testing environments.  
+   > - This ensures smoother local development while keeping production deployments configurable and secure.
+
+   ---
+
+   > **Health Check for Operational Readiness:**  
+   > - The `health_check()` method performs a best-effort connectivity check against the Freshdesk API.  
+   > - It allows the system to validate integration readiness and handle failures gracefully before attempting ticket creation.
+
+   ---
+
+   > **Foundation for Agent-to-Action Automation:**  
+   > - When integrated with Planner and Specialist agents, this tool enables **end-to-end automation**—from user question to ticket creation.  
+   > - It demonstrates how agentic AI systems can move beyond answers and directly trigger enterprise actions.
+
    ```python
    import os
    import aiohttp
@@ -727,17 +830,6 @@ This tool will allow agents, especially Finance and HR to create real tickets wh
 
    ![](./media/ss-61.png)
 
-   >Purpose of FreshdeskTool:
-   >- This class provides an asynchronous interface to integrate the Freshdesk REST API into your agent workflow, enabling automated ticket creation directly from agent actions.
-
-   >Authentication and Setup:
-   >- It authenticates using your Freshdesk API key via Basic Auth and constructs requests to the /api/v2/tickets endpoint.
-   >- The base URL, API key, and default configurations (priority, group ID) are read securely from environment variables.
-
-   >Ticket Creation Logic:
-   >- The create_ticket() method builds a structured JSON payload including subject, description, requester info, and optional tags.
-   >- It makes an async POST request to Freshdesk, creating a real ticket and returning normalized metadata (ID, status, priority, URL).
-
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
    ![](./media/ss-39.png)
@@ -745,6 +837,58 @@ This tool will allow agents, especially Finance and HR to create real tickets wh
 1. From the explorer menu, select `main.py`.
 
 1. Replace the existing code with the following snippet
+
+   > **Purpose of the Updated Orchestrator (What’s Newly Added):**  
+   > - This version extends the RAG-enabled multi-agent system to support **actionable outcomes**, specifically **automated support ticket creation**.  
+   > - The system now moves beyond answering questions to **executing enterprise workflows** when user intent requires escalation or formal tracking.
+
+   ---
+
+   > **CREATE_TICKET Pattern (New Agent-to-Action Contract):**  
+   > - A lightweight `CREATE_TICKET` block pattern is introduced as a **structured signal** that agents can emit in their responses.  
+   > - This pattern allows agents to declaratively request ticket creation without directly calling external APIs, keeping agents logic-focused and tool-agnostic.
+
+   ---
+
+   > **Ticket Parsing Logic (`parse_create_ticket_block`):**  
+   > - The new `parse_create_ticket_block()` function scans agent responses to detect and extract ticket details such as subject, body, tags, requester name, and email.  
+   > - This enables safe, controlled interpretation of agent output before triggering real-world actions.
+
+   ---
+
+   > **Freshdesk Tool Integration (New Capability):**  
+   > - A `FreshdeskTool` instance is initialized and attached to the agents dictionary as `agents["freshdesk_tool"]`.  
+   > - When a valid `CREATE_TICKET` block is detected, the orchestrator automatically invokes Freshdesk to create a real support ticket and captures ticket metadata (ID, URL, status).
+
+   ---
+
+   > **User-Aware Ticket Creation (Enhanced UX):**  
+   > - For sensitive workflows such as **leave requests** or **reimbursements**, the system now prompts the user for their name before ticket creation.  
+   > - This ensures tickets are created with meaningful requester information, aligning with real enterprise service desk practices.
+
+   ---
+
+   > **Automatic Response Rewriting After Ticket Creation:**  
+   > - Once a ticket is successfully created, the original `CREATE_TICKET` block is removed from the agent response.  
+   > - It is replaced with a user-friendly confirmation message containing ticket ID, status, requester name, and a direct URL to the ticket.
+
+   ---
+
+   > **Interactive Ticket Creation Mode (New Command):**  
+   > - A dedicated `ticket` command is added to interactive mode, allowing users to manually create tickets through a guided CLI flow.  
+   > - This supports scenarios where users want to raise requests directly, without relying on agent inference.
+
+   ---
+
+   > **Graceful Degradation and Optional Tooling:**  
+   > - If Freshdesk is not configured or fails to initialize, the system continues to function normally as a Q&A assistant.  
+   > - Ticket creation is simply skipped, ensuring robustness across environments (dev, demo, prod).
+
+   ---
+
+   > **Evolution to a Full Agentic Workflow System:**  
+   > - With these additions, the platform evolves from a **multi-agent RAG assistant** into a **true agentic automation system**.  
+   > - It now supports reasoning → grounding → decision → action, which is the foundation of production-grade enterprise AgentOps.
 
    ```python
    import asyncio
@@ -1238,15 +1382,6 @@ This tool will allow agents, especially Finance and HR to create real tickets wh
    ```
 
    ![](./media/ss-62.png)
-
-   >run_multi_agent_with_user_info():
-   >- This function extends the original multi-agent logic to handle personalized user interactions and automated ticket creation.
-   >- It detects a CREATE_TICKET block in the agent’s response, extracts details (subject, body, tags, requester info), and automatically triggers Freshdesk ticket creation.
-   >- Once the ticket is created, it dynamically replaces the block with a confirmation message showing ticket ID, subject, and URL.
-
-   >interactive_ticket_creation():
-   >- Introduces a guided manual ticket creation flow where the user can enter the ticket subject and description directly through prompts.
-   >- It then calls the Freshdesk tool asynchronously to create the ticket and displays the confirmation details interactively in the terminal.
 
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
