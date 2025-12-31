@@ -93,9 +93,9 @@ In this task, you will configure Content Safety filters in Microsoft Foundry to 
 
    ![](./media/ss-120.png)
 
-1. once done, a pop up window will be opened, select **Replace**.
+   > if a pop up window is opened, select **Replace**.
 
-   ![](./media/ss-121.png)
+     ![](./media/ss-121.png)
 
 1. In the review pane, click on **Create filter**.
 

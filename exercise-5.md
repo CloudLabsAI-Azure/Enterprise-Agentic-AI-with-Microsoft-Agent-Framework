@@ -89,6 +89,16 @@ In this task, you’ll integrate OpenTelemetry and Agent Framework observability
    ENABLE_SENSITIVE_DATA=true
    ```
 
+   >Note:
+
+   >- The APPLICATIONINSIGHTS_CONNECTION_STRING can be found in the Azure Portal under Application Insights → Overview → Connection String.
+
+   >- Setting ENABLE_OTEL=true enables OpenTelemetry-based tracing, which allows you to observe agent execution, tool calls, and request flows.
+
+   >- Setting ENABLE_SENSITIVE_DATA=true allows richer telemetry for lab and debugging purposes. This should be used only in controlled or non-production environments.
+
+   >These settings enable observability and monitoring, helping you track agent behavior, execution flow, and performance during the lab.
+
    ![](./media/ss-84.png)
 
 1. Once done, please save the file.

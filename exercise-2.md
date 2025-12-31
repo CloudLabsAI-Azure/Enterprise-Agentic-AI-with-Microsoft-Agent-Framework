@@ -65,6 +65,14 @@ In this task, you will review the preconfigured folder structure to understand w
    AZURE_OPENAI_API_VERSION=2025-03-01-preview
    ```
 
+   >Note:
+
+   >- The AZURE_OPENAI_ENDPOINT and AZURE_OPENAI_API_KEY can be found in the Microsoft Foundry Portal under your Project → Settings → API Keys & Endpoints (or equivalent access section for your project).
+
+   >- The deployment name (for example, gpt-4o-mini) corresponds to the model deployment you created in Microsoft Foundry.
+
+   >These values are required for the application to authenticate with Microsoft Foundry and communicate with the deployed Azure OpenAI model. Providing them in the environment file allows the code to securely connect to the correct project, endpoint, and model without hardcoding credentials in the source code.
+
 1. Once done, please save the file. Click on the **file** option from top menu, select **save** to save the file.
 
    ![](./media/ss-39.png)

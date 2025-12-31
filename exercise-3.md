@@ -46,6 +46,16 @@ It allows agents to retrieve factual information, invoke APIs, and perform actio
    AZURE_SEARCH_INDEX=[Index_Name]
    ```
 
+   >Note:
+
+   >- The AZURE_SEARCH_ENDPOINT can be found in the Azure Portal under your Azure AI Search service → Overview section.
+
+   >- The AZURE_SEARCH_API_KEY refers to the Query Key, which can be found under Azure AI Search service → Keys and Endpoint.
+
+   >- The AZURE_SEARCH_INDEX is the name of the search index created earlier in the lab and is available under Azure AI Search service → Indexes.
+
+   >These values are required to allow the application to connect to Azure AI Search, query the indexed documents, and retrieve relevant data for grounding the agent responses.
+
    ![](./media/ss-49.png)
    
    >**Note:** Please replace the `Query_Key` and `Index_Name` values with the ones you have copied earlier.
@@ -302,17 +312,25 @@ In this task you will attach the AzureSearchTool to HR/Finance/Compliance agents
    from agents.finance_agent import build_finance_agent
    from tools.azure_search_tool import AzureSearchTool
 
-   # Configure logging
+   # Configure logging with timestamp, level, and message formatting
    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
    async def run_multi_agent(query: str, agents: Dict[str, Any]) -> Dict[str, Any]:
       """
       Advanced multi-agent system with routing, search context, and ticket creation capabilities.
+      
+      Args:
+         query: The user's question or request
+         agents: Dictionary containing all initialized agent instances and tools
+         
+      Returns:
+         Dict containing query results, routing info, context status, response, and metadata
       """
+      # Record start time for performance tracking
       start_time = time.time()
       
       try:
-         # Step 1: Route the query
+         # Step 1: Route the query to the appropriate specialist agent
          logging.info(f"Routing query: {query[:50]}...")
          target = await classify_target(agents["planner"], query)
          logging.info(f"Query routed to: {target}")
@@ -321,7 +339,7 @@ In this task you will attach the AzureSearchTool to HR/Finance/Compliance agents
          logging.info("Retrieving context from knowledge base...")
          context = await agents["search_tool"].search(query, top=3)
          
-         # Step 3: Create enriched prompt with context
+         # Create enriched prompt with context from knowledge base
          enriched_prompt = f"""
    Context from Knowledge Base:
    {context}
@@ -339,28 +357,31 @@ In this task you will attach the AzureSearchTool to HR/Finance/Compliance agents
    while recommending the user contact the appropriate department for specific details.
    """
          
-         # Step 4: Get response from appropriate agent
+         # Step 3: Map the target department to the corresponding agent
          agent_mapping = {
                "HR": ("hr", "HRAgent"),
                "FINANCE": ("finance", "FinanceAgent"), 
                "COMPLIANCE": ("compliance", "ComplianceAgent")
          }
          
+         # Execute the enriched query with the appropriate specialist agent
          if target in agent_mapping:
                agent_key, agent_name = agent_mapping[target]
                answer = await agents[agent_key].run(enriched_prompt)
          else:
-               # Fallback to HR if routing unclear
+               # Fallback mechanism: Default to HR agent if routing is unclear
                logging.warning(f"Unknown target '{target}', falling back to HR")
                answer = await agents["hr"].run(enriched_prompt)
                target = "HR"
                agent_name = "HRAgent"
          
+         # Convert answer to string for consistent handling
          answer_text = str(answer)
          
-         # Step 6: Process response
+         # Calculate total response time
          response_time = time.time() - start_time
          
+         # Package and return comprehensive results
          return {
                "query": query,
                "routed_to": target,
@@ -375,6 +396,7 @@ In this task you will attach the AzureSearchTool to HR/Finance/Compliance agents
          }
          
       except Exception as e:
+         # Handle any errors that occur during query processing
          logging.error(f"Error processing query: {e}")
          return {
                "query": query,
@@ -390,11 +412,21 @@ In this task you will attach the AzureSearchTool to HR/Finance/Compliance agents
          }
 
    def format_response(result: Dict[str, Any]) -> str:
-      """Format the agent response for display."""
+      """
+      Format the agent response for user-friendly display with visual indicators.
+      
+      Args:
+         result: Dictionary containing the agent's response data
+         
+      Returns:
+         Formatted string with response summary, answer, and optional ticket details
+      """
+      # Select visual indicators based on result status
       status_icon = "✅" if result["success"] else "❌"
       context_icon = "📚" if result.get("context_retrieved") else "📭"
       ticket_icon = "🎫" if result.get("ticket_created") else ""
       
+      # Create formatted output with structured information
       formatted = f"""
    {status_icon} Agent Response Summary:
    ┌─ Routed to: {result['routed_to']} ({result['agent_name']})
@@ -408,7 +440,7 @@ In this task you will attach the AzureSearchTool to HR/Finance/Compliance agents
    {result['answer']}
    """
       
-      # Add ticket details if available
+      # Add ticket details section if a ticket was created successfully
       if result.get("ticket_info") and result["ticket_info"].get("success"):
          ticket = result["ticket_info"]["ticket"]
          formatted += f"""
@@ -423,18 +455,28 @@ In this task you will attach the AzureSearchTool to HR/Finance/Compliance agents
       return formatted
 
    async def run_interactive_mode(agents: Dict[str, Any]):
-      """Interactive mode for real-time queries."""
+      """
+      Interactive mode for real-time user queries with command-line interface.
+      
+      Args:
+         agents: Dictionary containing all initialized agent instances and tools
+      """
+      # Display welcome message and available commands
       print("\n🤖 Enterprise Agent System - Interactive Mode")
       print("Available agents: HR, Finance, Compliance")
       print("Type 'quit' to exit, 'help' for commands\n")
       
+      # Main interactive loop
       while True:
          try:
+               # Get user input
                query = input("Enter your question: ").strip()
                
+               # Handle exit commands
                if query.lower() in ['quit', 'exit', 'q']:
                   print("👋 Goodbye!")
                   break
+               # Handle help command - display usage instructions
                elif query.lower() == 'help':
                   print("""
    📋 Available Commands:
@@ -448,21 +490,31 @@ In this task you will attach the AzureSearchTool to HR/Finance/Compliance agents
    - "Do we need GDPR compliance for EU customers?"
    """)
                   continue
+               # Skip empty inputs
                elif not query:
                   continue
-                  
+               
+               # Process the query and display formatted response
                result = await run_multi_agent(query, agents)
                print(format_response(result))
                
          except KeyboardInterrupt:
+               # Handle Ctrl+C gracefully
                print("\n👋 Goodbye!")
                break
          except Exception as e:
+               # Log and display any unexpected errors
                logging.error(f"Interactive mode error: {e}")
                print(f"❌ Error: {e}")
 
    async def run_batch_tests(agents: Dict[str, Any]):
-      """Run focused test queries with grounded data integration."""
+      """
+      Run focused test queries with grounded data integration from Azure Search.
+      
+      Args:
+         agents: Dictionary containing all initialized agent instances and tools
+      """
+      # Define test cases that should retrieve context from knowledge base
       test_queries = [
          "What is the travel reimbursement limit for hotel stays?",
          "How many vacation days are allowed per year?"
@@ -470,28 +522,34 @@ In this task you will attach the AzureSearchTool to HR/Finance/Compliance agents
       
       print("🧪 Running focused batch tests with grounded data integration...\n")
       
+      # Execute each test query sequentially
       for i, query in enumerate(test_queries, 1):
+         # Display test header with visual separation
          print(f"{'='*80}")
          print(f"TEST {i}/{len(test_queries)}: {query}")
          print(f"{'='*80}")
          
+         # Run the query with context retrieval and display formatted results
          result = await run_multi_agent(query, agents)
          print(format_response(result))
          
-         # Small delay between queries for better readability
+         # Add delay between tests for better readability and tool processing
          if i < len(test_queries):
                await asyncio.sleep(1.0)  # Longer delay for tool operations
 
    async def main():
-      """Main application entry point with enhanced features and tool integration."""
+      """
+      Main application entry point with enhanced features and tool integration.
+      Initializes all agents and tools, then runs in either interactive or batch mode.
+      """
       print("🚀 Initializing Enterprise Agent System with Tools...")
       
       try:
-         # Load environment and build agents
+         # Load environment variables and initialize core agents
          load_env()
          logging.info("Building agent network...")
          
-         # Build core agents
+         # Build core specialist agents for routing and handling queries
          agents = {
                "planner": await build_planner_agent(),
                "hr": await build_hr_agent(), 
@@ -499,14 +557,15 @@ In this task you will attach the AzureSearchTool to HR/Finance/Compliance agents
                "finance": await build_finance_agent()
          }
          
-         # Initialize and attach tools
+         # Initialize and attach external tools
          logging.info("Initializing tools...")
          
          try:
+               # Attempt to initialize Azure Search tool for context retrieval
                search_tool = AzureSearchTool()
                agents["search_tool"] = search_tool
                
-               # Test search tool
+               # Test search tool connectivity with health check
                health = await search_tool.health_check()
                if health["status"] == "healthy":
                   logging.info("✅ Azure Search tool initialized successfully")
@@ -514,31 +573,35 @@ In this task you will attach the AzureSearchTool to HR/Finance/Compliance agents
                   logging.warning(f"⚠️ Azure Search tool health check failed: {health}")
                   
          except Exception as e:
+               # Fall back to mock search tool if Azure Search initialization fails
                logging.error(f"Failed to initialize Azure Search tool: {e}")
-               # Create mock search tool for testing
+               # Create mock search tool for testing without Azure Search
                class MockSearchTool:
                   async def search(self, query, top=3):
                      return f"📭 Mock search results for: {query}\n(Azure Search tool not configured)"
                agents["search_tool"] = MockSearchTool()
          
-         # Freshdesk integration removed - focusing on grounded search responses only
          
          logging.info("✅ All agents and tools initialized")
          
-         # Check if running interactively or in batch mode
+         # Determine execution mode based on command-line arguments
          import sys
          if len(sys.argv) > 1 and sys.argv[1] == "--interactive":
+               # Run in interactive mode for real-time queries
                await run_interactive_mode(agents)
          else:
+               # Run predefined batch tests by default
                await run_batch_tests(agents)
                
       except Exception as e:
+         # Handle critical initialization failures
          logging.error(f"System initialization failed: {e}")
          print(f"❌ Failed to start system: {e}")
          
-         # Try to run with minimal configuration
+         # Try to run with minimal configuration as fallback
          logging.info("Attempting to run with minimal configuration...")
          try:
+               # Create minimal agent configuration without external dependencies
                minimal_agents = {
                   "planner": await build_planner_agent(),
                   "hr": await build_hr_agent(),
@@ -546,13 +609,16 @@ In this task you will attach the AzureSearchTool to HR/Finance/Compliance agents
                   "finance": await build_finance_agent(),
                   "search_tool": type('MockSearch', (), {'search': lambda self, q, top=3: f"Mock search for: {q}"})()
                }
+               # Attempt to run batch tests with minimal configuration
                await run_batch_tests(minimal_agents)
          except Exception as minimal_error:
+               # Report if even minimal configuration fails
                print(f"❌ Even minimal configuration failed: {minimal_error}")
 
+   # Entry point: Run the async main function
    if __name__ == "__main__":
       asyncio.run(main())
-    ```
+   ```
 
    ![](./media/ss-56.png)
 
@@ -658,7 +724,7 @@ In this task, you will set up and configure Freshworks to enable tickets managem
 
    ![](./media/fw10.png)
 
-1. From the browser tab, please copy the **Account URL** as shown and copy the value to notepad. You will be using this further.
+1. From the browser tab, please copy the **Domain URL** as shown and copy the value to notepad. You will be using this further.
 
    ![](./media/ss-67.png)
 
