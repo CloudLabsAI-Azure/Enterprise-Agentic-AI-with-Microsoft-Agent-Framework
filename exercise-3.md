@@ -1,4 +1,4 @@
-# Exercise 3: Integrating Tools & Data with Model Context Protocol
+# Exercise 3: Integrating Tools & Data with Agent Systems
 
 ## Estimated Duration: 120 Minutes
 
