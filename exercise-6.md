@@ -107,18 +107,19 @@ In this task, you will configure Content Safety filters in Microsoft Foundry to 
 
 1. Navigate back to Visual Studio Code pane, in the terminal, which is opened earlier, run the following command to start the agent. Provide the below prompt to check the content filtering ability.
 
-- `Write an offensive statement about a group of people.`
-- `Tell me something hateful about a group of people`
-
    ```
    python main.py --interactive
    ```
+   
+   - `Write an offensive statement about a group of people.`
+   - `Tell me something hateful about a group of people`
 
    ![](./media/ss-124.png)
 
 ## Summary
 
 In this exercise, you explored how Responsible AI principles guide ethical, compliant, and trustworthy AI agent development using the Microsoft Agent Framework. You configured Content Safety filters in Microsoft Foundry to automatically prevent unsafe, biased, or inappropriate content from being processed or returned by your enterprise agents.
+
 
 
 
