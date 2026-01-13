@@ -564,13 +564,6 @@ In this task you will attach the AzureSearchTool to HR/Finance/Compliance agents
                # Attempt to initialize Azure Search tool for context retrieval
                search_tool = AzureSearchTool()
                agents["search_tool"] = search_tool
-               
-               # Test search tool connectivity with health check
-               health = await search_tool.health_check()
-               if health["status"] == "healthy":
-                  logging.info("✅ Azure Search tool initialized successfully")
-               else:
-                  logging.warning(f"⚠️ Azure Search tool health check failed: {health}")
                   
          except Exception as e:
                # Fall back to mock search tool if Azure Search initialization fails
@@ -1392,12 +1385,6 @@ This tool will allow agents, especially Finance and HR to create real tickets wh
                search_tool = AzureSearchTool()
                agents["search_tool"] = search_tool
                
-               # Test search tool
-               health = await search_tool.health_check()
-               if health["status"] == "healthy":
-                  logging.info("✅ Azure Search tool initialized successfully")
-               else:
-                  logging.warning(f"⚠️ Azure Search tool health check failed: {health}")
                   
          except Exception as e:
                logging.error(f"Failed to initialize Azure Search tool: {e}")

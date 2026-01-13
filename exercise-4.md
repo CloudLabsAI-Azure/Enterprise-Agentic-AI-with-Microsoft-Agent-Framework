@@ -1054,13 +1054,7 @@ In this task, you’ll update the existing agent to be persistent agent and publ
                 try:
                     search_tool = AzureSearchTool()
                     agents["search_tool"] = search_tool
-                    
-                    # Test search tool
-                    health = await search_tool.health_check()
-                    if health["status"] == "healthy":
-                        logging.info("✅ Azure Search tool initialized successfully")
-                    else:
-                        logging.warning(f"⚠️ Azure Search tool health check failed: {health}")
+                
                         
                 except Exception as e:
                     logging.error(f"Failed to initialize Azure Search tool: {e}")
